@@ -1,0 +1,51 @@
+# Icon attributions for game-icons.net icons
+# Add new icons here and the attributions page will update automatically
+
+- id: mermaid
+  name: Mermaid
+  file: mermaid.svg
+  url: https://game-icons.net/1x1/delapouite/mermaid.html
+  author: Delapouite
+  author_url: https://delapouite.com/
+
+- id: giant-clam
+  name: Oyster Pearl
+  file: giant-clam.svg
+  url: https://game-icons.net/1x1/delapouite/oyster-pearl.html
+  author: Delapouite
+  author_url: https://delapouite.com/
+
+- id: tidewalker
+  name: Fish Monster
+  file: tidewalker.svg
+  url: https://game-icons.net/1x1/delapouite/fish-monster.html
+  author: Delapouite
+  author_url: https://delapouite.com/
+  
+- id: shark
+  name: Shark Jaws
+  file: Shark.svg
+  url: https://game-icons.net/1x1/lorc/shark-jaws.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/
+  
+- id: sturdy_rope
+  name: Rope Coil
+  file: sturdy-rope.svg
+  url: https://game-icons.net/1x1/delapouite/rope-coil.html
+  author: Delapouite
+  author_url: https://delapouite.com/
+  
+- id: old_rope
+  name: Rope Coil
+  file: old-rope.svg
+  url: https://game-icons.net/1x1/delapouite/rope-coil.html
+  author: Delapouite
+  author_url: https://delapouite.com/
+
+- id: old_nautical_chart_fragment
+  name: Treasure Map
+  file: oldnautchartfrag.svg
+  url: https://game-icons.net/1x1/lorc/treasure-map.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/

@@ -1,0 +1,20 @@
+map_info:
+  name: "Ruins of the Forgotten Castle"
+  type: "modular"
+  image: "/assets/maps/ruins/map.png"
+  dimensions:
+    width: 2048
+    height: 2048
+  grid_size:
+    cols: 5
+    rows: 5
+  # grid_tiles: []  # Define combined tiles here when needed
+  season: "Season 1"
+
+categories:
+  # Placeholder - add specific categories for this map
+  - id: placeholder
+    name: Placeholder
+    icon: "/assets/icons/placeholder.svg"
+
+locations: []

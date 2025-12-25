@@ -1,0 +1,42 @@
+# DarkerMaps - Dark and Darker Interactive Map
+# Jekyll Configuration
+
+title: DarkerMaps
+description: Crowdsourced quest item and creature locations for Dark and Darker
+url: ""
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - LICENSE
+  - LICENSE-DATA
+  - README.md
+  - CONTRIBUTING.md
+  - "*.md"
+  - ".git"
+  - ".github"
+
+# Include data files
+include:
+  - _data
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Collections for maps
+collections:
+  maps:
+    output: true
+    permalink: /maps/:name/

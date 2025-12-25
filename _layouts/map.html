@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<div class="map-page">
+    <div class="map-controls">
+        <div class="map-header">
+            <h1>{{ page.map_name }}</h1>
+            <div class="season-indicator">Updated for: <strong>{{ page.season | default: "Season 1" }}</strong></div>
+        </div>
+
+        <div class="filter-panel">
+            <div class="filter-header">
+                <h3>Filters</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn" id="select-all-filters">Select All</button>
+                    <button class="filter-btn" id="deselect-all-filters">Deselect All</button>
+                </div>
+            </div>
+            <div class="filter-group" id="filter-group">
+                <!-- Filter checkboxes dynamically generated from categories.json -->
+            </div>
+        </div>
+
+        {% if page.map_type == 'modular' %}
+        <div class="module-selector">
+            <h3>Active Modules</h3>
+            <p class="module-hint">Select which tiles are in your current dungeon run</p>
+            <div class="module-grid" id="module-grid">
+                <!-- Module checkboxes will be dynamically generated -->
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="map-container">
+        <div id="map"
+             data-map-id="{{ page.map_id }}"
+             data-map-type="{{ page.map_type }}"
+             data-map-image="{{ page.map_image }}"
+             data-map-width="{{ page.map_width }}"
+             data-map-height="{{ page.map_height }}">
+        </div>
+    </div>
+</div>
+
+{{ content }}

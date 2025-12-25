@@ -1,0 +1,12 @@
+{
+  "name": "darkermaps",
+  "version": "1.0.0",
+  "description": "Interactive map for Dark and Darker quest items and creatures",
+  "private": true,
+  "scripts": {
+    "validate": "node tools/validate-locations.js"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

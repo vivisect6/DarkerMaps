@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DarkerMaps Location Editor</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        :root {
+            --bg-dark: #1a1a2e;
+            --bg-darker: #0f0f1a;
+            --bg-panel: #252540;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-gold: #d4af37;
+            --accent-blue: #4a90d9;
+            --accent-red: #d94a4a;
+            --accent-green: #4ad94a;
+            --border-color: #3a3a5a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--bg-darker);
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.25rem;
+            color: var(--accent-gold);
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .help-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--text-secondary);
+            color: var(--bg-darker);
+            font-size: 12px;
+            font-weight: bold;
+            cursor: help;
+        }
+
+        .help-icon:hover {
+            background-color: var(--accent-gold);
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* Left Panel - Map Selection & Categories */
+        .left-panel {
+            width: 250px;
+            background-color: var(--bg-panel);
+            border-right: 1px solid var(--border-color);
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .panel-section h3 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Map Container */
+        .map-container {
+            flex: 1;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-darker);
+        }
+
+        /* Right Panel - Location Editor */
+        .right-panel {
+            width: 350px;
+            background-color: var(--bg-panel);
+            border-left: 1px solid var(--border-color);
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-darker);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .form-group input.readonly-input {
+            background-color: var(--bg-dark);
+            cursor: not-allowed;
+        }
+
+        .form-group input.screenshot-path {
+            font-size: 0.75rem;
+            font-family: monospace;
+        }
+
+        .form-hint {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--bg-darker);
+        }
+
+        .btn-primary:hover {
+            background-color: #e4bf47;
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-darker);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-panel);
+        }
+
+        .btn-danger {
+            background-color: var(--accent-red);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #e95a5a;
+        }
+
+        .btn-success {
+            background-color: var(--accent-green);
+            color: var(--bg-darker);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .btn-save-disabled {
+            background-color: var(--bg-darker);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            cursor: default;
+        }
+
+        .btn-save-disabled:hover {
+            background-color: var(--bg-darker);
+        }
+
+        /* Select/Dropdown */
+        select {
+            cursor: pointer;
+        }
+
+        /* Category Manager */
+        .category-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background-color: var(--bg-darker);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .category-name {
+            flex: 1;
+            font-size: 0.875rem;
+        }
+
+        /* Instructions */
+        .instructions {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding: 0.75rem;
+            background-color: var(--bg-darker);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .instructions strong {
+            color: var(--accent-gold);
+        }
+
+        /* Marker Styles */
+        .editor-marker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            transform: scale(var(--marker-scale, 1));
+        }
+
+        .editor-marker .marker-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.8));
+        }
+
+        /* Pending marker - pulsing to indicate unsaved */
+        .editor-marker.pending {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(var(--marker-scale, 1)); }
+            50% { opacity: 0.6; transform: scale(calc(var(--marker-scale, 1) * 1.1)); }
+        }
+
+        /* Coordinate display */
+        .coord-display {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: var(--bg-panel);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            z-index: 1000;
+        }
+
+        /* Best Fit Leaflet Control */
+        .leaflet-control-bestfit {
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        .leaflet-control-bestfit a {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            background-color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .leaflet-control-bestfit a:hover {
+            background-color: #f4f4f4;
+        }
+
+        .screenshot-preview {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        /* Filter Panel */
+        .filter-panel {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .filter-header h3 {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .filter-group {
+            margin-bottom: 0.75rem;
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.25rem 0;
+        }
+
+        .filter-checkbox input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent-gold);
+        }
+
+        .filter-label {
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .filter-btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-darker);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--bg-panel);
+            color: var(--text-primary);
+            border-color: var(--accent-gold);
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: var(--bg-darker);
+            border-top: 1px solid var(--border-color);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .site-footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .site-footer p {
+            margin: 0.5rem 0;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DarkerMaps Location Editor</h1>
+    </header>
+
+    <div class="main-container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <div class="panel-section">
+                <h3>Map Settings</h3>
+                <div class="form-group">
+                    <label>Map</label>
+                    <select id="map-select" onchange="changeMap()">
+                        <!-- Options populated from MAP_CONFIGS -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="filter-panel">
+                    <div class="filter-header">
+                        <h3>Filters</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn" id="select-all-filters">Select All</button>
+                            <button class="filter-btn" id="deselect-all-filters">Deselect All</button>
+                        </div>
+                    </div>
+                    <div class="filter-group" id="filter-group">
+                        <!-- Filter checkboxes dynamically generated from categories -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="coord-display">
+                <span id="cursor-coords">X: 0, Y: 0</span>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <div class="instructions">
+                <strong>Select a Type</strong>, then click on the map to place a marker. Click an existing marker to edit it.
+            </div>
+
+            <div id="location-form">
+                <div class="form-group">
+                    <label>1. Select Type</label>
+                    <select id="loc-type" onchange="updateGeneratedFields()">
+                        <!-- Options populated from categories -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" id="loc-id" readonly class="readonly-input">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>X Coordinate</label>
+                        <input type="number" id="loc-x" readonly class="readonly-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Y Coordinate</label>
+                        <input type="number" id="loc-y" readonly class="readonly-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Screenshot Path</label>
+                    <input type="text" id="loc-screenshot" readonly class="readonly-input screenshot-path">
+                    <div class="form-hint">Place screenshot file at this path manually</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="loc-description" placeholder="Describe where to find this location..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Contributors (comma-separated)</label>
+                    <input type="text" id="loc-contributors" placeholder="your_github_username">
+                </div>
+
+                <div class="form-row" style="margin-top: 1rem;">
+                    <button class="btn btn-success" onclick="saveLocation()" style="flex: 2;">Save Location</button>
+                    <button class="btn btn-danger" onclick="deleteLocation()">Delete</button>
+                </div>
+                <button class="btn btn-secondary btn-block" style="margin-top: 0.5rem;" onclick="clearForm()">Clear / New</button>
+                <button id="save-changes-btn" class="btn btn-save-disabled btn-block" style="margin-top: 0.5rem;" onclick="saveChanges()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script>
+        // Centralized map configuration
+        const MAP_CONFIGS = {
+            blue_maelstrom: { name: 'Blue Maelstrom', prefix: 'bm', width: 759, height: 762, type: 'fixed' },
+            ruins: { name: 'Ruins of the Forgotten Castle', prefix: 'ru', width: 2048, height: 2048, type: 'modular' },
+            crypts: { name: 'Crypts', prefix: 'cr', width: 2048, height: 2048, type: 'modular' },
+            inferno: { name: 'Inferno', prefix: 'if', width: 2048, height: 2048, type: 'modular' },
+            goblin_caves: { name: 'Goblin Caves', prefix: 'gc', width: 2048, height: 2048, type: 'modular' },
+            ice_caves: { name: 'Ice Caves', prefix: 'ic', width: 2048, height: 2048, type: 'modular' },
+            ice_abyss: { name: 'Ice Abyss', prefix: 'ia', width: 2048, height: 2048, type: 'modular' }
+        };
+
+        // State
+        let map = null;
+        let markersLayer = null;
+        let mapImage = null;
+        let currentMapId = 'blue_maelstrom';
+        let selectedLocationIndex = null;
+        let mapDimensions = { width: 759, height: 762 };
+
+        // Categories loaded from map-specific data
+        let categories = [];
+        let originalMapInfo = {}; // Store original map_info for preservation on save
+
+        let locations = [];
+        let originalLocations = []; // Snapshot for change detection
+        let pendingLocation = null; // Location being created (not yet saved)
+        let activeFilters = {}; // Track which categories are visible
+
+        function updateSaveButton() {
+            const btn = document.getElementById('save-changes-btn');
+            const hasChanges = JSON.stringify(locations) !== JSON.stringify(originalLocations);
+            if (hasChanges) {
+                btn.className = 'btn btn-primary btn-block';
+                btn.textContent = 'Save Changes *';
+            } else {
+                btn.className = 'btn btn-save-disabled btn-block';
+                btn.textContent = 'Save Changes';
+            }
+        }
+
+        function markSaved() {
+            originalLocations = JSON.parse(JSON.stringify(locations));
+            updateSaveButton();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            populateMapSelect();
+            await loadCategories();
+            initMap();
+            renderCategories();
+            setupFilterButtons();
+        });
+
+        // Populate map dropdown from MAP_CONFIGS
+        function populateMapSelect() {
+            const select = document.getElementById('map-select');
+            select.innerHTML = Object.entries(MAP_CONFIGS)
+                .map(([id, config]) => `<option value="${id}">${config.name}</option>`)
+                .join('');
+        }
+
+        // Load categories from map-specific JSON
+        async function loadCategories() {
+            // Load categories from the current map's data
+            const paths = [
+                `/assets/data/${currentMapId}.json`,
+                `../_site/assets/data/${currentMapId}.json`
+            ];
+
+            for (const path of paths) {
+                try {
+                    const response = await fetch(path);
+                    if (!response.ok) continue;
+                    const text = await response.text();
+                    // Skip if it looks like a Jekyll template (has frontmatter)
+                    if (text.trim().startsWith('---')) continue;
+                    const data = JSON.parse(text);
+                    // Store original map_info for preservation on save
+                    if (data.map_info) {
+                        originalMapInfo = data.map_info;
+                    }
+                    if (data.categories && data.categories.length > 0) {
+                        categories = data.categories;
+                        renderCategories();
+                        return;
+                    }
+                } catch (error) {
+                    // Silently try next path
+                }
+            }
+
+            // Fallback to defaults
+            originalMapInfo = {};
+            categories = [
+                { id: 'placeholder', name: 'Placeholder', icon: '/assets/icons/placeholder.svg' }
+            ];
+            renderCategories();
+        }
+
+        function initMap() {
+            const bounds = [[0, 0], [mapDimensions.height, mapDimensions.width]];
+
+            map = L.map('map', {
+                crs: L.CRS.Simple,
+                minZoom: -2,
+                maxZoom: 4,
+                zoomSnap: 0.25,
+                zoomDelta: 0.5
+            });
+
+            map.fitBounds(bounds);
+            markersLayer = L.layerGroup().addTo(map);
+            setupBestFit();
+
+            // Setup zoom-dependent marker scaling
+            updateMarkerScale();
+            map.on('zoomend', updateMarkerScale);
+
+            // Track mouse position
+            map.on('mousemove', (e) => {
+                const x = Math.round(e.latlng.lng);
+                const y = Math.round(e.latlng.lat);
+                document.getElementById('cursor-coords').textContent = `X: ${x}, Y: ${y}`;
+            });
+
+            // Click to add location
+            map.on('click', (e) => {
+                const type = document.getElementById('loc-type').value;
+                if (!type) {
+                    // No type selected - prompt user
+                    alert('Please select a Type first, then click on the map.');
+                    return;
+                }
+
+                const x = Math.round(e.latlng.lng);
+                const y = Math.round(e.latlng.lat);
+                const id = generateId(type);
+
+                // Create pending location (not saved yet)
+                pendingLocation = {
+                    id: id,
+                    type: type,
+                    coordinates: { x: x, y: y },
+                    description: '',
+                    screenshot: generateScreenshotPath(id),
+                    contributors: []
+                };
+
+                selectedLocationIndex = null; // Not editing an existing location
+
+                // Update form with pending location data
+                document.getElementById('loc-id').value = id;
+                document.getElementById('loc-x').value = x;
+                document.getElementById('loc-y').value = y;
+                document.getElementById('loc-description').value = '';
+                document.getElementById('loc-screenshot').value = pendingLocation.screenshot;
+                document.getElementById('loc-contributors').value = '';
+
+                // Render marker immediately (including pending)
+                renderMarkers();
+            });
+
+            // Try to load default map image
+            tryLoadDefaultMap();
+        }
+
+        function tryLoadDefaultMap() {
+            const img = new Image();
+            img.onload = () => {
+                mapDimensions.width = img.width;
+                mapDimensions.height = img.height;
+                setMapImage('../assets/maps/blue_maelstrom/map.png');
+            };
+            img.onerror = () => {
+                // Default map image not found, continue without it
+            };
+            img.src = '../assets/maps/blue_maelstrom/map.png';
+
+            // Also load existing location data for this map
+            loadLocationData(currentMapId);
+        }
+
+        // Load existing location data for a map
+        async function loadLocationData(mapId) {
+            const paths = [
+                `/assets/data/${mapId}.json`,
+                `../_site/assets/data/${mapId}.json`
+            ];
+
+            for (const path of paths) {
+                try {
+                    const response = await fetch(path);
+                    if (!response.ok) continue;
+                    const text = await response.text();
+                    if (text.trim().startsWith('---')) continue;
+                    const data = JSON.parse(text);
+                    if (data.locations && Array.isArray(data.locations)) {
+                        locations = data.locations;
+                        originalLocations = JSON.parse(JSON.stringify(locations));
+                        renderMarkers();
+                        updateSaveButton();
+                        return;
+                    }
+                } catch (error) {
+                    // Silently try next path
+                }
+            }
+            // No existing location data found, start fresh
+            originalLocations = [];
+            updateSaveButton();
+        }
+
+        function setMapImage(src) {
+            const bounds = [[0, 0], [mapDimensions.height, mapDimensions.width]];
+
+            if (mapImage) {
+                map.removeLayer(mapImage);
+            }
+
+            mapImage = L.imageOverlay(src, bounds).addTo(map);
+            map.setMaxBounds(bounds);
+            map.fitBounds(bounds);
+            renderMarkers();
+        }
+
+        // Best Fit control
+        function setupBestFit() {
+            const BestFitControl = L.Control.extend({
+                options: {
+                    position: 'topleft'
+                },
+                onAdd: function() {
+                    const container = L.DomUtil.create('div', 'leaflet-control-bestfit leaflet-bar');
+                    const link = L.DomUtil.create('a', '', container);
+                    link.href = '#';
+                    link.title = 'Best Fit';
+                    link.innerHTML = '⊡';
+                    link.setAttribute('role', 'button');
+                    link.setAttribute('aria-label', 'Best Fit');
+
+                    L.DomEvent.disableClickPropagation(container);
+                    L.DomEvent.on(link, 'click', function(e) {
+                        L.DomEvent.preventDefault(e);
+                        const bounds = [[0, 0], [mapDimensions.height, mapDimensions.width]];
+                        map.fitBounds(bounds);
+                    });
+
+                    return container;
+                }
+            });
+
+            map.addControl(new BestFitControl());
+        }
+
+        // Update marker scale based on current zoom level
+        function updateMarkerScale() {
+            // Scale range: 0.4 at minZoom (-2), 0.75 at zoom 0+
+            const zoom = map.getZoom();
+            const scale = Math.min(0.75, Math.max(0.4, (zoom + 2) / 2 * 0.35 + 0.4));
+            document.documentElement.style.setProperty('--marker-scale', scale);
+        }
+
+        function getMapPrefix() {
+            return MAP_CONFIGS[currentMapId]?.prefix || 'xx';
+        }
+
+        function generateId(type) {
+            const mapPrefix = getMapPrefix();
+            // Count existing locations of this type
+            const count = locations.filter(loc => loc.type === type).length + 1;
+            const num = String(count).padStart(3, '0');
+            return `${mapPrefix}-${type}-${num}`;
+        }
+
+        function generateScreenshotPath(id) {
+            return `/assets/screenshots/${currentMapId}/${id}.jpg`;
+        }
+
+        function updateGeneratedFields() {
+            // Only update if we're creating a new location (not editing)
+            if (selectedLocationIndex !== null) return;
+
+            const type = document.getElementById('loc-type').value;
+            if (!type) {
+                // No type selected yet
+                document.getElementById('loc-id').value = '';
+                document.getElementById('loc-screenshot').value = '';
+                return;
+            }
+
+            const id = generateId(type);
+            document.getElementById('loc-id').value = id;
+            document.getElementById('loc-screenshot').value = generateScreenshotPath(id);
+        }
+
+        // Categories / Filters
+        function renderCategories() {
+            const filterGroup = document.getElementById('filter-group');
+
+            // Initialize activeFilters - none selected by default
+            categories.forEach(cat => {
+                if (activeFilters[cat.id] === undefined) {
+                    activeFilters[cat.id] = false;
+                }
+            });
+
+            // Generate filter checkboxes (matching live map style)
+            filterGroup.innerHTML = categories.map(cat => `
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filter-${cat.id}" ${activeFilters[cat.id] ? 'checked' : ''}>
+                    <span class="filter-label">
+                        <img src="${cat.icon}" alt="${cat.name}" class="filter-icon">
+                        ${cat.name}
+                    </span>
+                </label>
+            `).join('');
+
+            // Add event listeners to each filter checkbox
+            categories.forEach(cat => {
+                const checkbox = document.getElementById(`filter-${cat.id}`);
+                if (checkbox) {
+                    checkbox.addEventListener('change', (e) => {
+                        activeFilters[cat.id] = e.target.checked;
+                        renderMarkers();
+                    });
+                }
+            });
+
+            // Update type select dropdown with empty default
+            const select = document.getElementById('loc-type');
+            select.innerHTML = '<option value="" disabled selected>Select type...</option>' +
+                categories.map(cat =>
+                    `<option value="${cat.id}">${cat.name}</option>`
+                ).join('');
+        }
+
+        function setupFilterButtons() {
+            const selectAllBtn = document.getElementById('select-all-filters');
+            const deselectAllBtn = document.getElementById('deselect-all-filters');
+
+            if (selectAllBtn) {
+                selectAllBtn.addEventListener('click', () => {
+                    categories.forEach(cat => {
+                        const checkbox = document.getElementById(`filter-${cat.id}`);
+                        if (checkbox) checkbox.checked = true;
+                        activeFilters[cat.id] = true;
+                    });
+                    renderMarkers();
+                });
+            }
+
+            if (deselectAllBtn) {
+                deselectAllBtn.addEventListener('click', () => {
+                    categories.forEach(cat => {
+                        const checkbox = document.getElementById(`filter-${cat.id}`);
+                        if (checkbox) checkbox.checked = false;
+                        activeFilters[cat.id] = false;
+                    });
+                    renderMarkers();
+                });
+            }
+        }
+
+        // Locations
+        function selectLocation(index) {
+            selectedLocationIndex = index;
+            const loc = locations[index];
+
+            document.getElementById('loc-id').value = loc.id || '';
+            document.getElementById('loc-type').value = loc.type || categories[0]?.id || 'quest_item';
+            document.getElementById('loc-x').value = loc.coordinates?.x || 0;
+            document.getElementById('loc-y').value = loc.coordinates?.y || 0;
+            document.getElementById('loc-description').value = loc.description || '';
+            document.getElementById('loc-screenshot').value = loc.screenshot || generateScreenshotPath(loc.id);
+            document.getElementById('loc-contributors').value = (loc.contributors || []).join(', ');
+
+            // Pan to location
+            if (loc.coordinates) {
+                map.panTo([loc.coordinates.y, loc.coordinates.x]);
+            }
+        }
+
+        function saveLocation() {
+            const loc = {
+                id: document.getElementById('loc-id').value,
+                type: document.getElementById('loc-type').value,
+                coordinates: {
+                    x: parseInt(document.getElementById('loc-x').value) || 0,
+                    y: parseInt(document.getElementById('loc-y').value) || 0
+                },
+                description: document.getElementById('loc-description').value,
+                screenshot: document.getElementById('loc-screenshot').value,
+                contributors: document.getElementById('loc-contributors').value.split(',').map(s => s.trim()).filter(Boolean)
+            };
+
+            if (selectedLocationIndex !== null) {
+                // Editing existing location
+                locations[selectedLocationIndex] = loc;
+                updateSaveButton();
+            } else if (pendingLocation) {
+                // Saving new pending location
+                locations.push(loc);
+                pendingLocation = null;
+                selectedLocationIndex = locations.length - 1;
+                updateSaveButton();
+            }
+
+            renderMarkers();
+        }
+
+        function deleteLocation() {
+            if (selectedLocationIndex === null) return;
+
+            if (confirm('Delete this location?')) {
+                locations.splice(selectedLocationIndex, 1);
+                selectedLocationIndex = null;
+                clearForm();
+                renderMarkers();
+                updateSaveButton();
+            }
+        }
+
+        function clearForm() {
+            selectedLocationIndex = null;
+            pendingLocation = null;
+            document.getElementById('loc-id').value = '';
+            document.getElementById('loc-type').value = '';
+            document.getElementById('loc-x').value = '';
+            document.getElementById('loc-y').value = '';
+            document.getElementById('loc-description').value = '';
+            document.getElementById('loc-screenshot').value = '';
+            document.getElementById('loc-contributors').value = '';
+            renderMarkers(); // Remove pending marker from map
+        }
+
+        // Markers
+        function renderMarkers() {
+            markersLayer.clearLayers();
+
+            // Render saved locations (respecting filters)
+            locations.forEach((loc, i) => {
+                if (!loc.coordinates) return;
+
+                // Skip if this location's type is filtered out
+                if (!activeFilters[loc.type]) return;
+
+                const category = categories.find(c => c.id === loc.type) || categories[0];
+                const iconHtml = `<div class="editor-marker">
+                    <img src="${category.icon}" alt="${category.name}" class="marker-icon">
+                </div>`;
+
+                const icon = L.divIcon({
+                    html: iconHtml,
+                    className: 'custom-marker',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 16]
+                });
+
+                const marker = L.marker([loc.coordinates.y, loc.coordinates.x], { icon });
+                marker.on('click', () => selectLocation(i));
+                markersLayer.addLayer(marker);
+            });
+
+            // Render pending location (unsaved)
+            if (pendingLocation && pendingLocation.coordinates) {
+                const category = categories.find(c => c.id === pendingLocation.type) || categories[0];
+                const iconHtml = `<div class="editor-marker pending">
+                    <img src="${category.icon}" alt="${category.name}" class="marker-icon">
+                </div>`;
+
+                const icon = L.divIcon({
+                    html: iconHtml,
+                    className: 'custom-marker',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 16]
+                });
+
+                const marker = L.marker([pendingLocation.coordinates.y, pendingLocation.coordinates.x], { icon });
+                markersLayer.addLayer(marker);
+            }
+        }
+
+        // Save Changes
+        async function saveChanges() {
+            const mapInfo = {
+                name: document.getElementById('map-select').selectedOptions[0].text,
+                type: originalMapInfo.type || 'fixed',
+                image: `/assets/maps/${currentMapId}/map.png`,
+                dimensions: mapDimensions,
+                season: originalMapInfo.season || 'Season 1'
+            };
+            // Preserve grid settings for modular maps
+            if (originalMapInfo.grid_size) {
+                mapInfo.grid_size = originalMapInfo.grid_size;
+            }
+            if (originalMapInfo.grid_tiles) {
+                mapInfo.grid_tiles = originalMapInfo.grid_tiles;
+            }
+
+            const data = {
+                map_info: mapInfo,
+                categories: categories,
+                locations: locations
+            };
+
+            const yaml = jsyaml.dump(data, {
+                indent: 2,
+                lineWidth: -1,
+                quotingType: '"',
+                forceQuotes: true
+            });
+
+            const filename = `${currentMapId}.yml`;
+
+            // Try File System Access API (Chrome/Edge)
+            if ('showSaveFilePicker' in window) {
+                try {
+                    const handle = await window.showSaveFilePicker({
+                        suggestedName: filename,
+                        types: [{
+                            description: 'YAML file',
+                            accept: { 'text/yaml': ['.yml', '.yaml'] }
+                        }]
+                    });
+                    const writable = await handle.createWritable();
+                    await writable.write(yaml);
+                    await writable.close();
+                    markSaved();
+                    alert(`Saved! Place the file in _data/locations/${filename} if not already there.`);
+                    return;
+                } catch (err) {
+                    if (err.name === 'AbortError') return; // User cancelled
+                    // File System API failed, fall through to download
+                }
+            }
+
+            // Fallback: download the file
+            const blob = new Blob([yaml], { type: 'text/yaml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+            markSaved();
+            alert(`Downloaded ${filename}. Move it to _data/locations/ in your local repo.`);
+        }
+
+        // Map changes
+        async function changeMap() {
+            currentMapId = document.getElementById('map-select').value;
+            locations = [];
+            originalLocations = [];
+            pendingLocation = null;
+            selectedLocationIndex = null;
+            activeFilters = {}; // Reset filters for new map
+            clearForm();
+
+            // Reload categories for new map
+            await loadCategories();
+
+            // Re-setup filter buttons (event listeners need to be reattached after DOM change)
+            setupFilterButtons();
+
+            // Load existing location data for the new map
+            loadLocationData(currentMapId);
+            loadMapImage(currentMapId);
+            renderMarkers();
+        }
+
+        // Load map image for current map
+        function loadMapImage(mapId) {
+            const config = MAP_CONFIGS[mapId] || { width: 2048, height: 2048 };
+            mapDimensions.width = config.width;
+            mapDimensions.height = config.height;
+
+            const img = new Image();
+            img.onload = () => {
+                setMapImage(`../assets/maps/${mapId}/map.png`);
+            };
+            img.onerror = () => {
+                // Map image not found, still update bounds
+                const bounds = [[0, 0], [mapDimensions.height, mapDimensions.width]];
+                map.setMaxBounds(bounds);
+                map.fitBounds(bounds);
+            };
+            img.src = `../assets/maps/${mapId}/map.png`;
+        }
+
+    </script>
+
+    <footer class="site-footer">
+        <p>
+            Code: <a href="/LICENSE">MIT License</a> |
+            Data: <a href="/LICENSE-DATA">ODbL License</a> |
+            <a href="/attributions">Attributions</a>
+        </p>
+        <p>
+            <a href="https://github.com/vivisect6/DarkerMaps/blob/main/CONTRIBUTING.md">Contribute locations via Pull Request</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,103 @@
+---
+layout: default
+title: Attributions
+---
+
+<div class="attributions-page">
+    <h1>Attributions</h1>
+
+    <section class="attribution-section">
+        <h2>Icons</h2>
+        <p>Map marker icons are sourced from <a href="https://game-icons.net/" target="_blank" rel="noopener">game-icons.net</a> and are licensed under <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC BY 3.0</a>.</p>
+
+        <table class="attribution-table">
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for icon in site.data.icon_attributions %}
+                <tr>
+                    <td><img src="{{ '/assets/icons/' | append: icon.file | relative_url }}" alt="{{ icon.name }} icon" width="32" height="32"></td>
+                    <td><a href="{{ icon.url }}" target="_blank" rel="noopener">{{ icon.name }}</a></td>
+                    <td><a href="{{ icon.author_url }}" target="_blank" rel="noopener">{{ icon.author }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="attribution-section">
+        <h2>Mapping Library</h2>
+        <p><a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet.js</a> - open-source JavaScript library for interactive maps, licensed under <a href="https://github.com/Leaflet/Leaflet/blob/main/LICENSE" target="_blank" rel="noopener">BSD 2-Clause</a>.</p>
+    </section>
+
+    <section class="attribution-section">
+        <h2>Game Content</h2>
+        <p>Dark and Darker is developed by <a href="https://www.ironmace.com/" target="_blank" rel="noopener">IRONMACE</a>. Map images and screenshots are used under Fair Use for the purpose of community documentation.</p>
+    </section>
+</div>
+
+<style>
+.attributions-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.attributions-page h1 {
+    color: var(--accent-gold);
+    margin-bottom: 2rem;
+}
+
+.attribution-section {
+    background-color: var(--bg-panel);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.attribution-section h2 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.attribution-section p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.attribution-section a {
+    color: var(--accent-blue);
+}
+
+.attribution-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.attribution-table th,
+.attribution-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.attribution-table th {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.attribution-table td {
+    color: var(--text-secondary);
+}
+
+.attribution-table img {
+    vertical-align: middle;
+}
+</style>

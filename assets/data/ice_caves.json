@@ -1,0 +1,4 @@
+---
+layout: null
+---
+{{ site.data.locations.ice_caves | jsonify }}

@@ -1,0 +1,49 @@
+map_info:
+  name: "Blue Maelstrom"
+  type: "fixed"
+  image: "/assets/maps/blue_maelstrom/map.png"
+  dimensions:
+    width: 759
+    height: 762
+  season: "Season 1"
+
+categories:
+  - id: mermaid
+    name: Mermaid
+    icon: "/assets/icons/mermaid.svg" 
+  - id: giant_clam
+    name: Giant Clam
+    icon: "/assets/icons/giant-clam.svg" 
+  - id: tidewalker
+    name: Tidewalker
+    icon: "/assets/icons/tidewalker.svg" 
+  - id: shark
+    name: Shark
+    icon: "/assets/icons/shark.svg" 
+  - id: old_rope
+    name: Old Rope
+    icon: "/assets/icons/old-rope.svg" 
+  - id: sturdy_rope
+    name: Sturdy Rope
+    icon: "/assets/icons/sturdy-rope.svg" 
+  - id: oldnautchartfrag
+    name: Old Naut Chart Frag
+    icon: "/assets/icons/oldnautchartfrag.svg" 
+    
+locations:
+  - id: "bm-mermaid-001"
+    type: "mermaid"
+    coordinates:
+      x: 573
+      y: 283
+    description: ""
+    screenshot: "/assets/screenshots/blue_maelstrom/bm-mermaid-001.jpg"
+    contributors: []
+  - id: "bm-giant_clam-001"
+    type: "giant_clam"
+    coordinates:
+      x: 429
+      y: 421
+    description: "On a wood platform at the outer edge of the center whirlpool."
+    screenshot: "/assets/screenshots/blue_maelstrom/bm-giant_clam-001.jpg"
+    contributors: []
