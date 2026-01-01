@@ -157,9 +157,16 @@
             cursor: not-allowed;
         }
 
-        .form-group input.screenshot-path {
+        .screenshot-display {
+            display: block;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
             font-size: 0.75rem;
             font-family: monospace;
+            cursor: help;
         }
 
         .form-hint {
@@ -354,6 +361,28 @@
             margin-top: 0.5rem;
         }
 
+        .screenshot-status {
+            font-size: 0.75rem;
+            padding: 0.1rem 0.4rem;
+            border-radius: 3px;
+            margin-left: 0.5rem;
+        }
+
+        .screenshot-status.exists {
+            background-color: var(--accent-green);
+            color: var(--bg-darker);
+        }
+
+        .screenshot-status.missing {
+            background-color: var(--accent-red);
+            color: white;
+        }
+
+        .screenshot-status.checking {
+            background-color: var(--text-secondary);
+            color: var(--bg-darker);
+        }
+
         /* Filter Panel */
         .filter-panel {
             margin-bottom: 1.5rem;
@@ -511,21 +540,14 @@
                     <input type="text" id="loc-id" readonly class="readonly-input">
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>X Coordinate</label>
-                        <input type="number" id="loc-x" readonly class="readonly-input">
-                    </div>
-                    <div class="form-group">
-                        <label>Y Coordinate</label>
-                        <input type="number" id="loc-y" readonly class="readonly-input">
-                    </div>
-                </div>
+                <input type="hidden" id="loc-x">
+                <input type="hidden" id="loc-y">
 
                 <div class="form-group">
-                    <label>Screenshot Path</label>
-                    <input type="text" id="loc-screenshot" readonly class="readonly-input screenshot-path">
-                    <div class="form-hint">Place screenshot file at this path manually</div>
+                    <label>Screenshot Path <span id="screenshot-status" class="screenshot-status"></span></label>
+                    <input type="hidden" id="loc-screenshot">
+                    <span id="loc-screenshot-display" class="screenshot-display" title=""></span>
+                    <div class="form-hint">Hover to see full path</div>
                 </div>
 
                 <div class="form-group">
@@ -533,13 +555,9 @@
                     <textarea id="loc-description" placeholder="Describe where to find this location..."></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label>Contributors (comma-separated)</label>
-                    <input type="text" id="loc-contributors" placeholder="your_github_username">
-                </div>
-
                 <div class="form-row" style="margin-top: 1rem;">
                     <button class="btn btn-success" onclick="saveLocation()" style="flex: 2;">Save Location</button>
+                    <button id="move-btn" class="btn btn-secondary" onclick="startMoveMarker()">Move</button>
                     <button class="btn btn-danger" onclick="deleteLocation()">Delete</button>
                 </div>
                 <button class="btn btn-secondary btn-block" style="margin-top: 0.5rem;" onclick="clearForm()">Clear / New</button>
@@ -552,14 +570,15 @@
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script>
         // Centralized map configuration
+        // Set enabled: true to show in dropdown (others kept for future use)
         const MAP_CONFIGS = {
-            blue_maelstrom: { name: 'Blue Maelstrom', prefix: 'bm', width: 759, height: 762, type: 'fixed' },
-            ruins: { name: 'Ruins of the Forgotten Castle', prefix: 'ru', width: 2048, height: 2048, type: 'modular' },
-            crypts: { name: 'Crypts', prefix: 'cr', width: 2048, height: 2048, type: 'modular' },
-            inferno: { name: 'Inferno', prefix: 'if', width: 2048, height: 2048, type: 'modular' },
-            goblin_caves: { name: 'Goblin Caves', prefix: 'gc', width: 2048, height: 2048, type: 'modular' },
-            ice_caves: { name: 'Ice Caves', prefix: 'ic', width: 2048, height: 2048, type: 'modular' },
-            ice_abyss: { name: 'Ice Abyss', prefix: 'ia', width: 2048, height: 2048, type: 'modular' }
+            blue_maelstrom: { name: 'Blue Maelstrom', prefix: 'bm', width: 1200, height: 1201, type: 'fixed', enabled: true },
+            ruins: { name: 'Ruins of the Forgotten Castle', prefix: 'ru', width: 2048, height: 2048, type: 'modular', enabled: false },
+            crypts: { name: 'Crypts', prefix: 'cr', width: 2048, height: 2048, type: 'modular', enabled: false },
+            inferno: { name: 'Inferno', prefix: 'if', width: 2048, height: 2048, type: 'modular', enabled: false },
+            goblin_caves: { name: 'Goblin Caves', prefix: 'gc', width: 2048, height: 2048, type: 'modular', enabled: false },
+            ice_caves: { name: 'Ice Caves', prefix: 'ic', width: 2048, height: 2048, type: 'modular', enabled: false },
+            ice_abyss: { name: 'Ice Abyss', prefix: 'ia', width: 2048, height: 2048, type: 'modular', enabled: false }
         };
 
         // State
@@ -578,6 +597,7 @@
         let originalLocations = []; // Snapshot for change detection
         let pendingLocation = null; // Location being created (not yet saved)
         let activeFilters = {}; // Track which categories are visible
+        let isMovingMarker = false; // Track if we're in move mode
 
         function updateSaveButton() {
             const btn = document.getElementById('save-changes-btn');
@@ -605,10 +625,11 @@
             setupFilterButtons();
         });
 
-        // Populate map dropdown from MAP_CONFIGS
+        // Populate map dropdown from MAP_CONFIGS (only enabled maps)
         function populateMapSelect() {
             const select = document.getElementById('map-select');
             select.innerHTML = Object.entries(MAP_CONFIGS)
+                .filter(([id, config]) => config.enabled)
                 .map(([id, config]) => `<option value="${id}">${config.name}</option>`)
                 .join('');
         }
@@ -677,8 +698,22 @@
                 document.getElementById('cursor-coords').textContent = `X: ${x}, Y: ${y}`;
             });
 
-            // Click to add location
+            // Click to add or move location
             map.on('click', (e) => {
+                const x = Math.round(e.latlng.lng);
+                const y = Math.round(e.latlng.lat);
+
+                // Handle move mode
+                if (isMovingMarker && selectedLocationIndex !== null) {
+                    // Update the selected location's coordinates
+                    document.getElementById('loc-x').value = x;
+                    document.getElementById('loc-y').value = y;
+                    // Exit move mode
+                    cancelMoveMarker();
+                    renderMarkers();
+                    return;
+                }
+
                 const type = document.getElementById('loc-type').value;
                 if (!type) {
                     // No type selected - prompt user
@@ -686,8 +721,6 @@
                     return;
                 }
 
-                const x = Math.round(e.latlng.lng);
-                const y = Math.round(e.latlng.lat);
                 const id = generateId(type);
 
                 // Create pending location (not saved yet)
@@ -707,8 +740,7 @@
                 document.getElementById('loc-x').value = x;
                 document.getElementById('loc-y').value = y;
                 document.getElementById('loc-description').value = '';
-                document.getElementById('loc-screenshot').value = pendingLocation.screenshot;
-                document.getElementById('loc-contributors').value = '';
+                setScreenshotDisplay(pendingLocation.screenshot);
 
                 // Render marker immediately (including pending)
                 renderMarkers();
@@ -830,6 +862,43 @@
             return `/assets/screenshots/${currentMapId}/${id}.jpg`;
         }
 
+        function getFilenameFromPath(path) {
+            return path ? path.split('/').pop() : '';
+        }
+
+        function setScreenshotDisplay(path) {
+            document.getElementById('loc-screenshot').value = path;
+            document.getElementById('loc-screenshot-display').textContent = getFilenameFromPath(path);
+            document.getElementById('loc-screenshot-display').title = path;
+            checkScreenshotExists(path);
+        }
+
+        function checkScreenshotExists(path) {
+            const statusEl = document.getElementById('screenshot-status');
+
+            if (!path) {
+                statusEl.textContent = '';
+                statusEl.className = 'screenshot-status';
+                return;
+            }
+
+            statusEl.textContent = 'checking...';
+            statusEl.className = 'screenshot-status checking';
+
+            // Try to load the image to check if it exists
+            const img = new Image();
+            img.onload = () => {
+                statusEl.textContent = 'exists';
+                statusEl.className = 'screenshot-status exists';
+            };
+            img.onerror = () => {
+                statusEl.textContent = 'missing';
+                statusEl.className = 'screenshot-status missing';
+            };
+            // Use relative path for local testing
+            img.src = '..' + path;
+        }
+
         function updateGeneratedFields() {
             // Only update if we're creating a new location (not editing)
             if (selectedLocationIndex !== null) return;
@@ -838,18 +907,23 @@
             if (!type) {
                 // No type selected yet
                 document.getElementById('loc-id').value = '';
-                document.getElementById('loc-screenshot').value = '';
+                setScreenshotDisplay('');
                 return;
             }
 
             const id = generateId(type);
             document.getElementById('loc-id').value = id;
-            document.getElementById('loc-screenshot').value = generateScreenshotPath(id);
+            setScreenshotDisplay(generateScreenshotPath(id));
         }
 
         // Categories / Filters
         function renderCategories() {
             const filterGroup = document.getElementById('filter-group');
+
+            // Sort categories alphabetically by name
+            const sortedCategories = [...categories].sort((a, b) =>
+                a.name.localeCompare(b.name)
+            );
 
             // Initialize activeFilters - none selected by default
             categories.forEach(cat => {
@@ -859,7 +933,7 @@
             });
 
             // Generate filter checkboxes (matching live map style)
-            filterGroup.innerHTML = categories.map(cat => `
+            filterGroup.innerHTML = sortedCategories.map(cat => `
                 <label class="filter-checkbox">
                     <input type="checkbox" id="filter-${cat.id}" ${activeFilters[cat.id] ? 'checked' : ''}>
                     <span class="filter-label">
@@ -870,7 +944,7 @@
             `).join('');
 
             // Add event listeners to each filter checkbox
-            categories.forEach(cat => {
+            sortedCategories.forEach(cat => {
                 const checkbox = document.getElementById(`filter-${cat.id}`);
                 if (checkbox) {
                     checkbox.addEventListener('change', (e) => {
@@ -883,7 +957,7 @@
             // Update type select dropdown with empty default
             const select = document.getElementById('loc-type');
             select.innerHTML = '<option value="" disabled selected>Select type...</option>' +
-                categories.map(cat =>
+                sortedCategories.map(cat =>
                     `<option value="${cat.id}">${cat.name}</option>`
                 ).join('');
         }
@@ -918,6 +992,8 @@
         // Locations
         function selectLocation(index) {
             selectedLocationIndex = index;
+            isMovingMarker = false;
+            updateMoveButton();
             const loc = locations[index];
 
             document.getElementById('loc-id').value = loc.id || '';
@@ -925,8 +1001,7 @@
             document.getElementById('loc-x').value = loc.coordinates?.x || 0;
             document.getElementById('loc-y').value = loc.coordinates?.y || 0;
             document.getElementById('loc-description').value = loc.description || '';
-            document.getElementById('loc-screenshot').value = loc.screenshot || generateScreenshotPath(loc.id);
-            document.getElementById('loc-contributors').value = (loc.contributors || []).join(', ');
+            setScreenshotDisplay(loc.screenshot || generateScreenshotPath(loc.id));
 
             // Pan to location
             if (loc.coordinates) {
@@ -943,8 +1018,7 @@
                     y: parseInt(document.getElementById('loc-y').value) || 0
                 },
                 description: document.getElementById('loc-description').value,
-                screenshot: document.getElementById('loc-screenshot').value,
-                contributors: document.getElementById('loc-contributors').value.split(',').map(s => s.trim()).filter(Boolean)
+                screenshot: document.getElementById('loc-screenshot').value
             };
 
             if (selectedLocationIndex !== null) {
@@ -977,14 +1051,37 @@
         function clearForm() {
             selectedLocationIndex = null;
             pendingLocation = null;
+            isMovingMarker = false;
+            updateMoveButton();
             document.getElementById('loc-id').value = '';
             document.getElementById('loc-type').value = '';
             document.getElementById('loc-x').value = '';
             document.getElementById('loc-y').value = '';
             document.getElementById('loc-description').value = '';
-            document.getElementById('loc-screenshot').value = '';
-            document.getElementById('loc-contributors').value = '';
+            setScreenshotDisplay('');
             renderMarkers(); // Remove pending marker from map
+        }
+
+        function startMoveMarker() {
+            if (selectedLocationIndex === null) return;
+            isMovingMarker = true;
+            updateMoveButton();
+        }
+
+        function cancelMoveMarker() {
+            isMovingMarker = false;
+            updateMoveButton();
+        }
+
+        function updateMoveButton() {
+            const btn = document.getElementById('move-btn');
+            if (isMovingMarker) {
+                btn.textContent = 'Moving...';
+                btn.className = 'btn btn-primary';
+            } else {
+                btn.textContent = 'Move';
+                btn.className = 'btn btn-secondary';
+            }
         }
 
         // Markers
@@ -1010,7 +1107,15 @@
                     iconAnchor: [16, 16]
                 });
 
-                const marker = L.marker([loc.coordinates.y, loc.coordinates.x], { icon });
+                // Use form coordinates if this is the selected location (for move preview)
+                let markerX = loc.coordinates.x;
+                let markerY = loc.coordinates.y;
+                if (i === selectedLocationIndex) {
+                    markerX = parseInt(document.getElementById('loc-x').value) || loc.coordinates.x;
+                    markerY = parseInt(document.getElementById('loc-y').value) || loc.coordinates.y;
+                }
+
+                const marker = L.marker([markerY, markerX], { icon });
                 marker.on('click', () => selectLocation(i));
                 markersLayer.addLayer(marker);
             });
@@ -1061,7 +1166,8 @@
                 indent: 2,
                 lineWidth: -1,
                 quotingType: '"',
-                forceQuotes: true
+                forceQuotes: false,
+                noCompatMode: true  // Prevents 'y' from being quoted as YAML 1.1 boolean
             });
 
             const filename = `${currentMapId}.yml`;
@@ -1107,6 +1213,7 @@
             originalLocations = [];
             pendingLocation = null;
             selectedLocationIndex = null;
+            isMovingMarker = false;
             activeFilters = {}; // Reset filters for new map
             clearForm();
 

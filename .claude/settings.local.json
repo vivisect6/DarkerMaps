@@ -6,7 +6,26 @@
       "Bash(cat:*)",
       "Bash(git check-ignore:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npm run validate:*)",
+      "Bash(cmd /c \"npm run validate\")",
+      "Bash(cmd /c \"cd C:\\\\Users\\\\kylet\\\\Documents\\\\DarkerMaps && npm run validate 2>&1\")",
+      "Bash(cmd /c \"node C:\\\\Users\\\\kylet\\\\Documents\\\\DarkerMaps\\\\tools\\\\validate-locations.js\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\kylet\\\\documents\\\\DarkerMaps''; node tools/validate-locations.js\")",
+      "Bash(powershell.exe -Command \"Get-Command node -ErrorAction SilentlyContinue | Select-Object Source\")",
+      "Bash(powershell.exe -Command \"Test-Path ''C:\\\\Program Files\\\\nodejs\\\\node.exe''\")",
+      "Bash(powershell.exe:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(git -C \"C:\\\\Users\\\\kylet\\\\documents\\\\DarkerMaps\" status)",
+      "Bash(git -C \"C:\\\\Users\\\\kylet\\\\documents\\\\DarkerMaps\" diff CONTRIBUTING.md README.md)",
+      "Bash(git -C \"C:\\\\Users\\\\kylet\\\\documents\\\\DarkerMaps\" log --oneline -5)",
+      "Bash(git -C \"C:\\\\Users\\\\kylet\\\\documents\\\\DarkerMaps\" add CONTRIBUTING.md README.md assets/icons/placeholder.svg)",
+      "Bash(git -C \"C:\\\\Users\\\\kylet\\\\documents\\\\DarkerMaps\" commit -m \"$\\(cat <<''EOF''\nUpdate documentation for accuracy and consistency\n\n- Fix CONTRIBUTING.md location format to use category-based types\n- Update ID format to {prefix}-{type}-{number} convention\n- Add missing map prefixes \\(ru, ic, ia\\)\n- Correct modular grid from 4x4 to 5x5 \\(A-E, 1-5\\)\n- Fix README.md YAML path to match actual structure\n- Add placeholder.svg icon for incomplete maps\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C \"C:\\\\Users\\\\kylet\\\\documents\\\\DarkerMaps\" diff --stat)",
+      "Bash(git -C \"C:\\\\Users\\\\kylet\\\\documents\\\\DarkerMaps\" diff)",
+      "Bash(git -C \"C:\\\\Users\\\\kylet\\\\documents\\\\DarkerMaps\" add -A)"
     ]
   }
 }

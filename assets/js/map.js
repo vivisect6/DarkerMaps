@@ -10,6 +10,7 @@
     let map = null;
     let markersLayer = null;
     let locationData = null;
+    let locationContributors = {}; // Map of location ID -> contributor username
     let categories = [];
     let activeFilters = {};
     let activeModules = new Set(); // For modular maps
@@ -29,6 +30,9 @@
 
         // Load map data (includes categories and locations)
         await loadMapData(mapId);
+
+        // Load location contributors data
+        await loadLocationContributors();
 
         initMap(mapElement, mapType, mapImage, mapWidth, mapHeight);
         setupFilters();
@@ -85,6 +89,21 @@
     }
 
     /**
+     * Load location contributors data
+     */
+    async function loadLocationContributors() {
+        try {
+            const response = await fetch('/assets/data/location_contributors.json');
+            if (response.ok) {
+                locationContributors = await response.json();
+            }
+        } catch (error) {
+            // Silently fail - contributors are optional
+            locationContributors = {};
+        }
+    }
+
+    /**
      * Get category by ID
      */
     function getCategory(id) {
@@ -99,14 +118,13 @@
         const bounds = [[0, 0], [height, width]];
 
         // Create map with CRS.Simple for pixel coordinates
+        // Note: maxBounds disabled to allow popup autopan to work correctly
         map = L.map(element, {
             crs: L.CRS.Simple,
             minZoom: -2,
             maxZoom: 2,
             zoomSnap: 0.25,
-            zoomDelta: 0.5,
-            maxBounds: bounds,
-            maxBoundsViscosity: 1.0
+            zoomDelta: 0.5
         });
 
         // Add the map image as an overlay
@@ -114,7 +132,7 @@
             L.imageOverlay(mapImage, bounds).addTo(map);
         }
 
-        // Fit the map to the image bounds
+        // Fit the map to the image bounds (not the expanded maxBounds)
         map.fitBounds(bounds);
 
         // Create markers layer group
@@ -261,10 +279,13 @@
         // Create marker at [y, x] because Leaflet uses [lat, lng] which maps to [y, x] in our coordinate system
         const marker = L.marker([y, x], { icon: icon });
 
-        // Add popup
+        // Add popup with generous top padding so it's always visible
         marker.bindPopup(() => createPopupContent(location), {
             maxWidth: 350,
-            minWidth: 250
+            minWidth: 250,
+            autoPan: true,
+            autoPanPaddingTopLeft: L.point(50, 250),
+            autoPanPaddingBottomRight: L.point(50, 50)
         });
 
         return marker;
@@ -276,8 +297,10 @@
     function createPopupContent(location) {
         const category = getCategory(location.type);
 
-        const contributors = location.contributors && location.contributors.length > 0
-            ? `<div class="contributors">Added by: ${location.contributors.join(', ')}</div>`
+        // Get contributor from automated git history data
+        const contributor = locationContributors[location.id];
+        const contributorHtml = contributor
+            ? `<div class="contributors">Added by: <a href="https://github.com/${contributor}" target="_blank" rel="noopener">${contributor}</a></div>`
             : '';
 
         const screenshot = location.screenshot
@@ -296,7 +319,7 @@
                 <p class="location-description">${escapeHtml(location.description || 'No description available.')}</p>
                 ${screenshot}
                 <div class="location-meta">
-                    ${contributors}
+                    ${contributorHtml}
                     <a href="${editUrl}" target="_blank" class="edit-link">Edit this location via Pull Request</a>
                 </div>
             </div>
@@ -309,9 +332,14 @@
     function setupFilters() {
         const filterGroup = document.getElementById('filter-group');
 
+        // Sort categories alphabetically by name
+        const sortedCategories = [...categories].sort((a, b) =>
+            a.name.localeCompare(b.name)
+        );
+
         // Generate filter checkboxes from categories
         if (filterGroup) {
-            filterGroup.innerHTML = categories.map(cat => `
+            filterGroup.innerHTML = sortedCategories.map(cat => `
                 <label class="filter-checkbox">
                     <input type="checkbox" id="filter-${cat.id}">
                     <span class="filter-label"><img src="${cat.icon}" alt="${cat.name}" class="filter-icon">${cat.name}</span>
@@ -319,7 +347,7 @@
             `).join('');
 
             // Add event listeners to each filter
-            categories.forEach(cat => {
+            sortedCategories.forEach(cat => {
                 const checkbox = document.getElementById(`filter-${cat.id}`);
                 if (checkbox) {
                     checkbox.addEventListener('change', (e) => {

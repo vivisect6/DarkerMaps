@@ -6,6 +6,39 @@ title: Attributions
 <div class="attributions-page">
     <h1>Attributions</h1>
 
+    {% if site.data.code_contributors.size > 0 %}
+    <section class="attribution-section">
+        <h2>Code Contributors</h2>
+        <p>Thank you to everyone who has contributed to the codebase!</p>
+        <div class="contributors-grid">
+            {% for contributor in site.data.code_contributors %}
+            <a href="{{ contributor.profile }}" target="_blank" rel="noopener" class="contributor-card" title="{{ contributor.username }} - {{ contributor.contributions }} contributions">
+                <img src="{{ contributor.avatar }}" alt="{{ contributor.username }}" class="contributor-avatar">
+                <span class="contributor-name">{{ contributor.username }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if site.data.location_contributors.size > 0 %}
+    <section class="attribution-section">
+        <h2>Location Data Contributors</h2>
+        <p>Thank you to everyone who has contributed location data!</p>
+        <div class="contributors-list">
+            {% assign unique_contributors = "" | split: "" %}
+            {% for item in site.data.location_contributors %}
+                {% unless unique_contributors contains item[1] %}
+                    {% assign unique_contributors = unique_contributors | push: item[1] %}
+                {% endunless %}
+            {% endfor %}
+            {% for username in unique_contributors %}
+            <a href="https://github.com/{{ username }}" target="_blank" rel="noopener" class="contributor-tag">{{ username }}</a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
     <section class="attribution-section">
         <h2>Icons</h2>
         <p>Map marker icons are sourced from <a href="https://game-icons.net/" target="_blank" rel="noopener">game-icons.net</a> and are licensed under <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC BY 3.0</a>.</p>
@@ -99,5 +132,62 @@ title: Attributions
 
 .attribution-table img {
     vertical-align: middle;
+}
+
+.contributors-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.contributor-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.75rem;
+    background-color: var(--bg-darker);
+    border-radius: 8px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.contributor-card:hover {
+    transform: translateY(-2px);
+    background-color: var(--bg-dark);
+}
+
+.contributor-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.contributor-name {
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.contributors-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.contributor-tag {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    background-color: var(--bg-darker);
+    color: var(--accent-blue);
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.contributor-tag:hover {
+    background-color: var(--bg-dark);
 }
 </style>

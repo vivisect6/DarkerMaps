@@ -334,6 +334,18 @@ body {
     background-color: var(--bg-panel);
 }
 
+/* Popup below marker - flip tip to point upward */
+.popup-below .leaflet-popup-tip-container {
+    top: 0;
+    bottom: auto;
+    margin-top: -20px;
+}
+
+.popup-below .leaflet-popup-tip {
+    box-shadow: none;
+    transform: rotate(180deg);
+}
+
 .location-popup {
     padding: 1rem;
 }
