@@ -26,8 +26,8 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for details on 
 ### Quick Start
 
 1. Fork this repository
-2. Add your location to the YAML file in `_data/locations/[map]/[variant].yml`
-3. (Optional) Add a screenshot to `assets/screenshots/`
+2. Add your location to the YAML file in `_data/locations/[map].yml`
+3. (Optional) Add a screenshot to `assets/screenshots/[map]/`
 4. Submit a pull request
 
 ## Licensing
