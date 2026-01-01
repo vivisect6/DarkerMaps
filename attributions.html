@@ -52,7 +52,8 @@ title: Attributions
                 </tr>
             </thead>
             <tbody>
-                {% for icon in site.data.icon_attributions %}
+                {% assign sorted_icons = site.data.icon_attributions | sort: "name" %}
+                {% for icon in sorted_icons %}
                 <tr>
                     <td><img src="{{ '/assets/icons/' | append: icon.file | relative_url }}" alt="{{ icon.name }} icon" width="32" height="32"></td>
                     <td><a href="{{ icon.url }}" target="_blank" rel="noopener">{{ icon.name }}</a></td>
