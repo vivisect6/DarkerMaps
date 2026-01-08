@@ -1,31 +1,120 @@
 map_info:
-  name: "Blue Maelstrom"
-  type: "fixed"
-  image: "/assets/maps/blue_maelstrom/map.png"
+  name: Blue Maelstrom
+  type: fixed
+  image: /assets/maps/blue_maelstrom/map.png
   dimensions:
     width: 1200
     height: 1201
-  season: "Season 1"
+  season: Season 1
 categories:
-  - id: "mermaid"
-    name: "Mermaid"
-    icon: "/assets/icons/mermaid.svg"
-  - id: "giant_clam"
-    name: "Giant Clam"
-    icon: "/assets/icons/giant-clam.svg"
-  - id: "tidewalker"
-    name: "Tidewalker"
-    icon: "/assets/icons/tidewalker.svg"
-  - id: "shark"
-    name: "Shark"
-    icon: "/assets/icons/shark.svg"
-  - id: "old_rope"
-    name: "Old Rope"
-    icon: "/assets/icons/old-rope.svg"
-  - id: "sturdy_rope"
-    name: "Sturdy Rope"
-    icon: "/assets/icons/sturdy-rope.svg"
-  - id: "oldnautchartfrag"
-    name: "Old Naut Chart Frag"
-    icon: "/assets/icons/oldnautchartfrag.svg"
-locations: []
+  - id: mermaid
+    name: Mermaid
+    icon: /assets/icons/mermaid.svg
+  - id: giant_clam
+    name: Giant Clam
+    icon: /assets/icons/giant-clam.svg
+  - id: tidewalker
+    name: Tidewalker
+    icon: /assets/icons/tidewalker.svg
+  - id: shark
+    name: Shark
+    icon: /assets/icons/shark.svg
+  - id: old_rope
+    name: Old Rope
+    icon: /assets/icons/old-rope.svg
+  - id: sturdy_rope
+    name: Sturdy Rope
+    icon: /assets/icons/sturdy-rope.svg
+  - id: oldnautchartfrag
+    name: Old Naut Chart Frag
+    icon: /assets/icons/oldnautchartfrag.svg
+  - id: crocodilian
+    name: Crocodilian
+    icon: /assets/icons/crocodilian.svg
+  - id: saltvine
+    name: Saltvine
+    icon: /assets/icons/saltvine.svg
+  - id: cuttlefish
+    name: Cuttlefish
+    icon: /assets/icons/cuttlefish.svg
+  - id: jellyfish
+    name: Jellyfish
+    icon: /assets/icons/jellyfish.svg
+  - id: sailorsjournal
+    name: Sailor's Journal
+    icon: /assets/icons/sailorsjournal.svg
+  - id: pincushion
+    name: Pincushion
+    icon: /assets/icons/pincushion.svg
+  - id: shackles
+    name: Shackles
+    icon: /assets/icons/shackles.svg
+  - id: tornsail
+    name: Tornsail
+    icon: /assets/icons/tornsail.svg
+  - id: mermaidcoffin
+    name: Mermaid Coffin
+    icon: /assets/icons/mermaidcoffin.svg
+  - id: tar
+    name: Tar
+    icon: /assets/icons/tar.svg
+  - id: squid
+    name: Squid
+    icon: /assets/icons/squid.svg
+  - id: sunfish
+    name: Sunfish
+    icon: /assets/icons/sunfish.svg
+  - id: marlin
+    name: Marlin
+    icon: /assets/icons/marlin.svg
+  - id: seawalker
+    name: Sea Walker
+    icon: /assets/icons/seawalker.svg
+  - id: seaurchin
+    name: Sea Urchin
+    icon: /assets/icons/seaurchin.svg
+  - id: giantjellyfish
+    name: Giant Jellyfish
+    icon: /assets/icons/giantjellyfish.svg
+  - id: bladehand
+    name: Bladehand
+    icon: /assets/icons/bladehand.svg
+  - id: ancientstingray
+    name: Ancient Sting Ray
+    icon: /assets/icons/ancientstingray.svg
+locations:
+  - id: bm-shark-001
+    type: shark
+    coordinates:
+      x: 128
+      y: 678
+    description: Swimming around the backside of the ship.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-shark-001.jpg
+  - id: bm-shark-002
+    type: shark
+    coordinates:
+      x: 259
+      y: 967
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-shark-002.jpg
+  - id: bm-shark-003
+    type: shark
+    coordinates:
+      x: 598
+      y: 602
+    description: Chance to be a shark or giant jellyfish. Swimming at the top of the whirlpool.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-shark-003.jpg
+  - id: bm-giant_clam-001
+    type: giant_clam
+    coordinates:
+      x: 661
+      y: 654
+    description: On a wood structure at the bottom edge of the whirlpool.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-001.jpg
+  - id: bm-giant_clam-003
+    type: giant_clam
+    coordinates:
+      x: 407
+      y: 696
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-003.jpg

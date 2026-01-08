@@ -2,22 +2,11 @@
 
 Interactive maps with crowdsourced quest item and creature locations for **Dark and Darker**.
 
-## Features
-
-- Interactive pan/zoom maps using Leaflet.js
-- Filterable location markers (quest items, creatures)
-- Screenshot popups for each location
-- Normal and High Roller mode variants
-- Support for both fixed and modular (tiled) maps
-- Community-driven data via pull requests
-
 ## Available Maps
 
 | Map | Type | Status |
 |-----|------|--------|
 | Blue Maelstrom | Fixed | Available |
-
-More maps coming soon!
 
 ## Contributing
 
@@ -26,9 +15,10 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for details on 
 ### Quick Start
 
 1. Fork this repository
-2. Add your location to the YAML file in `_data/locations/[map].yml`
-3. (Optional) Add a screenshot to `assets/screenshots/[map]/`
-4. Submit a pull request
+2. Follow steps to setup local dev and use the location editor `tools/location-editor.html` to add locations. 
+3. "Save Changes" to `_data/locations/[map].yml`
+4. (Optional) Add a screenshot to `assets/screenshots/[map]/`
+5. Submit a pull request
 
 ## Licensing
 
@@ -50,7 +40,7 @@ When using the location data, please attribute as:
 
 ### Prerequisites
 
-- Ruby (for Jekyll)
+- Ruby (for Jekyll) with Devkit
 - Bundler
 
 ### Local Development
@@ -63,6 +53,7 @@ bundle install
 bundle exec jekyll serve
 
 # View at http://localhost:4000
+# location editoor tool at http://localhost:4000/tools/location-editor.html
 ```
 
 ### Project Structure

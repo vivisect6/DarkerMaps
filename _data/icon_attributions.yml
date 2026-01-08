@@ -55,4 +55,130 @@
   file: eel.svg
   url: https://game-icons.net/1x1/delapouite/eel.html
   author: Delapouite
-  author_url: https://delapouite.com/   
+  author_url: https://delapouite.com/  
+
+- id: crocodilian
+  name: Croc Jaws
+  file: crocodilian.svg
+  url: https://game-icons.net/1x1/lorc/croc-jaws.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/  
+  
+- id: saltvine
+  name: Algae
+  file: saltvine.svg
+  url: https://game-icons.net/1x1/delapouite/algae.html
+  author: Delapouite
+  author_url: https://delapouite.com/  
+  
+- id: cuttlefish
+  name: Giant Squid
+  file: cuttlefish.svg
+  url: https://game-icons.net/1x1/delapouite/giant-squid.html
+  author: Delapouite
+  author_url: https://delapouite.com/  
+  
+- id: jellyfish
+  name: Jellyfish
+  file: jellyfish.svg
+  url: https://game-icons.net/1x1/lorc/jellyfish.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/  
+
+- id: sailorsjournal
+  name: White Book
+  file: sailorsjournal.svg
+  url: https://game-icons.net/1x1/willdabeast/white-book.html
+  author: Willdabeast
+  author_url: http://wjbstories.blogspot.com/
+  
+- id: pincushion
+  name: Pincushion
+  file: pincushion.svg
+  url: https://game-icons.net/1x1/delapouite/pin.html
+  author: Delapouite
+  author_url: https://delapouite.com/  
+  
+- id: shackles
+  name: Handcuffs
+  file: shackles.svg
+  url: https://game-icons.net/1x1/lorc/handcuffs.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/  
+  
+- id: tornsail
+  name: Sail
+  file: tornsail.svg
+  url: https://game-icons.net/1x1/delapouite/sail.html
+  author: Delapouite
+  author_url: https://delapouite.com/  
+  
+- id: mermaidcoffin
+  name: Coffin
+  file: mermaidcoffin.svg
+  url: https://game-icons.net/1x1/lorc/coffin.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/  
+  
+- id: tar
+  name: Barrel
+  file: tar.svg
+  url: https://game-icons.net/1x1/delapouite/barrel-leak.html
+  author: Delapouite
+  author_url: https://delapouite.com/  
+  
+- id: squid
+  name: Squid
+  file: squid.svg
+  url: https://game-icons.net/1x1/lorc/squid.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/  
+
+- id: sunfish
+  name: Tropical Fish
+  file: sunfish.svg
+  url: https://game-icons.net/1x1/delapouite/tropical-fish.html
+  author: Delapouite
+  author_url: https://delapouite.com/  
+  
+- id: marlin
+  name: Salmon
+  file: marlin.svg
+  url: https://game-icons.net/1x1/various-artists/salmon.html
+  author: Various artists
+  author_url: https://commons.wikimedia.org/
+  
+- id: seawalker
+  name: Shambling Zombie
+  file: seawalker.svg
+  url: https://game-icons.net/1x1/delapouite/shambling-zombie.html
+  author: Delapouite
+  author_url: https://delapouite.com/  
+
+- id: seaurchin
+  name: Sea Urchin
+  file: seaurchin.svg
+  url: https://game-icons.net/1x1/delapouite/sea-urchin.html
+  author: Delapouite
+  author_url: https://delapouite.com/  
+  
+- id: giantjellyfish
+  name: Giant Jellyfish
+  file: giantjellyfish.svg
+  url: https://game-icons.net/1x1/lorc/jellyfish.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/  
+
+- id: bladehand
+  name: Pirate Flag
+  file: bladehand.svg
+  url: https://game-icons.net/1x1/delapouite/pirate-flag.html
+  author: Delapouite
+  author_url: https://delapouite.com/    
+
+- id: ancientstingray
+  name: Manta Ray
+  file: ancientstingray.svg
+  url: https://game-icons.net/1x1/delapouite/manta-ray.html
+  author: Delapouite
+  author_url: https://delapouite.com/    
