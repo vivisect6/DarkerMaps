@@ -383,77 +383,6 @@
             color: var(--bg-darker);
         }
 
-        /* Filter Panel */
-        .filter-panel {
-            margin-bottom: 1.5rem;
-        }
-
-        .filter-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-        }
-
-        .filter-header h3 {
-            font-size: 1rem;
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        .filter-group {
-            margin-bottom: 0.75rem;
-        }
-
-        .filter-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            padding: 0.25rem 0;
-        }
-
-        .filter-checkbox input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: var(--accent-gold);
-        }
-
-        .filter-label {
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .filter-icon {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 0.25rem;
-        }
-
-        .filter-btn {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.7rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background-color: var(--bg-darker);
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .filter-btn:hover {
-            background-color: var(--bg-panel);
-            color: var(--text-primary);
-            border-color: var(--accent-gold);
-        }
-
         /* Footer */
         .site-footer {
             background-color: var(--bg-darker);
@@ -497,20 +426,6 @@
                 </div>
             </div>
 
-            <div class="panel-section">
-                <div class="filter-panel">
-                    <div class="filter-header">
-                        <h3>Filters</h3>
-                        <div class="filter-buttons">
-                            <button class="filter-btn" id="select-all-filters">Select All</button>
-                            <button class="filter-btn" id="deselect-all-filters">Deselect All</button>
-                        </div>
-                    </div>
-                    <div class="filter-group" id="filter-group">
-                        <!-- Filter checkboxes dynamically generated from categories -->
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Map -->
@@ -524,7 +439,7 @@
         <!-- Right Panel -->
         <div class="right-panel">
             <div class="instructions">
-                <strong>Select a Type</strong>, then click on the map to place a marker. Click an existing marker to edit it.
+                <strong>Select a Type</strong> to filter the map to that type, then click to place a new marker. Click an existing marker to edit it.
             </div>
 
             <div id="location-form">
@@ -556,9 +471,9 @@
                 </div>
 
                 <div class="form-row" style="margin-top: 1rem;">
-                    <button class="btn btn-success" onclick="saveLocation()" style="flex: 2;">Save Location</button>
+                    <button id="save-loc-btn" class="btn btn-save-disabled" onclick="saveLocation()" style="flex: 2;">Save Location</button>
                     <button id="move-btn" class="btn btn-secondary" onclick="startMoveMarker()">Move</button>
-                    <button class="btn btn-danger" onclick="deleteLocation()">Delete</button>
+                    <button id="delete-btn" class="btn btn-secondary" onclick="deleteLocation()">Delete</button>
                 </div>
                 <button class="btn btn-secondary btn-block" style="margin-top: 0.5rem;" onclick="clearForm()">Clear / New</button>
                 <button id="save-changes-btn" class="btn btn-save-disabled btn-block" style="margin-top: 0.5rem;" onclick="saveChanges()">Save Changes</button>
@@ -622,7 +537,6 @@
             await loadCategories();
             initMap();
             renderCategories();
-            setupFilterButtons();
         });
 
         // Populate map dropdown from MAP_CONFIGS (only enabled maps)
@@ -742,7 +656,8 @@
                 document.getElementById('loc-description').value = '';
                 setScreenshotDisplay(pendingLocation.screenshot);
 
-                // Render marker immediately (including pending)
+                // Update button states and render marker
+                updateActionButtons();
                 renderMarkers();
             });
 
@@ -900,10 +815,14 @@
         }
 
         function updateGeneratedFields() {
-            // Only update if we're creating a new location (not editing)
+            const type = document.getElementById('loc-type').value;
+
+            // Always update filter to show only the selected type
+            setFilterForType(type);
+
+            // Only update ID fields if we're creating a new location (not editing)
             if (selectedLocationIndex !== null) return;
 
-            const type = document.getElementById('loc-type').value;
             if (!type) {
                 // No type selected yet
                 document.getElementById('loc-id').value = '';
@@ -916,10 +835,8 @@
             setScreenshotDisplay(generateScreenshotPath(id));
         }
 
-        // Categories / Filters
+        // Categories
         function renderCategories() {
-            const filterGroup = document.getElementById('filter-group');
-
             // Sort categories alphabetically by name
             const sortedCategories = [...categories].sort((a, b) =>
                 a.name.localeCompare(b.name)
@@ -932,28 +849,6 @@
                 }
             });
 
-            // Generate filter checkboxes (matching live map style)
-            filterGroup.innerHTML = sortedCategories.map(cat => `
-                <label class="filter-checkbox">
-                    <input type="checkbox" id="filter-${cat.id}" ${activeFilters[cat.id] ? 'checked' : ''}>
-                    <span class="filter-label">
-                        <img src="${cat.icon}" alt="${cat.name}" class="filter-icon">
-                        ${cat.name}
-                    </span>
-                </label>
-            `).join('');
-
-            // Add event listeners to each filter checkbox
-            sortedCategories.forEach(cat => {
-                const checkbox = document.getElementById(`filter-${cat.id}`);
-                if (checkbox) {
-                    checkbox.addEventListener('change', (e) => {
-                        activeFilters[cat.id] = e.target.checked;
-                        renderMarkers();
-                    });
-                }
-            });
-
             // Update type select dropdown with empty default
             const select = document.getElementById('loc-type');
             select.innerHTML = '<option value="" disabled selected>Select type...</option>' +
@@ -962,38 +857,25 @@
                 ).join('');
         }
 
-        function setupFilterButtons() {
-            const selectAllBtn = document.getElementById('select-all-filters');
-            const deselectAllBtn = document.getElementById('deselect-all-filters');
-
-            if (selectAllBtn) {
-                selectAllBtn.addEventListener('click', () => {
-                    categories.forEach(cat => {
-                        const checkbox = document.getElementById(`filter-${cat.id}`);
-                        if (checkbox) checkbox.checked = true;
-                        activeFilters[cat.id] = true;
-                    });
-                    renderMarkers();
-                });
+        // Set filter to show only the specified type
+        function setFilterForType(type) {
+            // Disable all filters first
+            categories.forEach(cat => {
+                activeFilters[cat.id] = false;
+            });
+            // Enable only the selected type
+            if (type) {
+                activeFilters[type] = true;
             }
-
-            if (deselectAllBtn) {
-                deselectAllBtn.addEventListener('click', () => {
-                    categories.forEach(cat => {
-                        const checkbox = document.getElementById(`filter-${cat.id}`);
-                        if (checkbox) checkbox.checked = false;
-                        activeFilters[cat.id] = false;
-                    });
-                    renderMarkers();
-                });
-            }
+            renderMarkers();
         }
 
         // Locations
         function selectLocation(index) {
             selectedLocationIndex = index;
+            pendingLocation = null; // Clear any pending when selecting existing
             isMovingMarker = false;
-            updateMoveButton();
+            updateActionButtons();
             const loc = locations[index];
 
             document.getElementById('loc-id').value = loc.id || '';
@@ -1033,6 +915,7 @@
                 updateSaveButton();
             }
 
+            updateActionButtons();
             renderMarkers();
         }
 
@@ -1052,25 +935,26 @@
             selectedLocationIndex = null;
             pendingLocation = null;
             isMovingMarker = false;
-            updateMoveButton();
+            updateActionButtons();
             document.getElementById('loc-id').value = '';
             document.getElementById('loc-type').value = '';
             document.getElementById('loc-x').value = '';
             document.getElementById('loc-y').value = '';
             document.getElementById('loc-description').value = '';
             setScreenshotDisplay('');
+            setFilterForType(null); // Clear filter when form is cleared
             renderMarkers(); // Remove pending marker from map
         }
 
         function startMoveMarker() {
             if (selectedLocationIndex === null) return;
             isMovingMarker = true;
-            updateMoveButton();
+            updateActionButtons();
         }
 
         function cancelMoveMarker() {
             isMovingMarker = false;
-            updateMoveButton();
+            updateActionButtons();
         }
 
         function updateMoveButton() {
@@ -1078,10 +962,35 @@
             if (isMovingMarker) {
                 btn.textContent = 'Moving...';
                 btn.className = 'btn btn-primary';
+            } else if (selectedLocationIndex !== null) {
+                btn.textContent = 'Move';
+                btn.className = 'btn btn-success';
             } else {
                 btn.textContent = 'Move';
                 btn.className = 'btn btn-secondary';
             }
+        }
+
+        function updateActionButtons() {
+            const saveBtn = document.getElementById('save-loc-btn');
+            const deleteBtn = document.getElementById('delete-btn');
+
+            // Save Location: green when there's a pending location OR editing existing
+            if (pendingLocation || selectedLocationIndex !== null) {
+                saveBtn.className = 'btn btn-success';
+            } else {
+                saveBtn.className = 'btn btn-save-disabled';
+            }
+
+            // Delete: red only when editing an existing location
+            if (selectedLocationIndex !== null) {
+                deleteBtn.className = 'btn btn-danger';
+            } else {
+                deleteBtn.className = 'btn btn-secondary';
+            }
+
+            // Also update move button
+            updateMoveButton();
         }
 
         // Markers
@@ -1219,9 +1128,6 @@
 
             // Reload categories for new map
             await loadCategories();
-
-            // Re-setup filter buttons (event listeners need to be reattached after DOM change)
-            setupFilterButtons();
 
             // Load existing location data for the new map
             loadLocationData(currentMapId);
