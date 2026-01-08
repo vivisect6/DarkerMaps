@@ -107,14 +107,28 @@ locations:
   - id: bm-giant_clam-001
     type: giant_clam
     coordinates:
-      x: 661
-      y: 654
+      x: 629
+      y: 651
     description: On a wood structure at the bottom edge of the whirlpool.
     screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-001.jpg
   - id: bm-giant_clam-003
     type: giant_clam
     coordinates:
-      x: 407
-      y: 696
+      x: 442
+      y: 743
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-003.jpg
+  - id: bm-giant_clam-002
+    type: giant_clam
+    coordinates:
+      x: 866
+      y: 436
+    description: In the pit with the mermaid.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-002.jpg
+  - id: bm-giant_clam-004
+    type: giant_clam
+    coordinates:
+      x: 979
+      y: 190
+    description: In the underwater cave past the giant jellyfish.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-004.jpg

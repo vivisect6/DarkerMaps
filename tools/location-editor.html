@@ -767,9 +767,28 @@
 
         function generateId(type) {
             const mapPrefix = getMapPrefix();
-            // Count existing locations of this type
-            const count = locations.filter(loc => loc.type === type).length + 1;
-            const num = String(count).padStart(3, '0');
+            const prefix = `${mapPrefix}-${type}-`;
+
+            // Find the highest existing ID number for this type
+            let maxNum = 0;
+            locations.forEach(loc => {
+                if (loc.id && loc.id.startsWith(prefix)) {
+                    const numPart = parseInt(loc.id.slice(prefix.length), 10);
+                    if (!isNaN(numPart) && numPart > maxNum) {
+                        maxNum = numPart;
+                    }
+                }
+            });
+
+            // Also check pending location to avoid duplicates
+            if (pendingLocation && pendingLocation.id && pendingLocation.id.startsWith(prefix)) {
+                const numPart = parseInt(pendingLocation.id.slice(prefix.length), 10);
+                if (!isNaN(numPart) && numPart > maxNum) {
+                    maxNum = numPart;
+                }
+            }
+
+            const num = String(maxNum + 1).padStart(3, '0');
             return `${mapPrefix}-${type}-${num}`;
         }
 
