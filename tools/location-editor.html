@@ -839,8 +839,17 @@
             // Always update filter to show only the selected type
             setFilterForType(type);
 
-            // Only update ID fields if we're creating a new location (not editing)
-            if (selectedLocationIndex !== null) return;
+            // Clear any existing selection or pending location when type changes
+            if (selectedLocationIndex !== null || pendingLocation) {
+                selectedLocationIndex = null;
+                pendingLocation = null;
+                isMovingMarker = false;
+                document.getElementById('loc-x').value = '';
+                document.getElementById('loc-y').value = '';
+                document.getElementById('loc-description').value = '';
+                updateActionButtons();
+                renderMarkers();
+            }
 
             if (!type) {
                 // No type selected yet
