@@ -513,6 +513,7 @@
         let pendingLocation = null; // Location being created (not yet saved)
         let activeFilters = {}; // Track which categories are visible
         let isMovingMarker = false; // Track if we're in move mode
+        let formModified = false; // Track if the form has been modified since selection
 
         function updateSaveButton() {
             const btn = document.getElementById('save-changes-btn');
@@ -537,7 +538,19 @@
             await loadCategories();
             initMap();
             renderCategories();
+            setupFormChangeTracking();
         });
+
+        // Track form changes to enable/disable Save Location button
+        function setupFormChangeTracking() {
+            const descriptionField = document.getElementById('loc-description');
+            descriptionField.addEventListener('input', () => {
+                if (selectedLocationIndex !== null) {
+                    formModified = true;
+                    updateActionButtons();
+                }
+            });
+        }
 
         // Populate map dropdown from MAP_CONFIGS (only enabled maps)
         function populateMapSelect() {
@@ -622,6 +635,7 @@
                     // Update the selected location's coordinates
                     document.getElementById('loc-x').value = x;
                     document.getElementById('loc-y').value = y;
+                    formModified = true;
                     // Exit move mode
                     cancelMoveMarker();
                     renderMarkers();
@@ -903,6 +917,7 @@
             selectedLocationIndex = index;
             pendingLocation = null; // Clear any pending when selecting existing
             isMovingMarker = false;
+            formModified = false; // No changes yet when first selecting
             updateActionButtons();
             const loc = locations[index];
 
@@ -943,6 +958,7 @@
                 updateSaveButton();
             }
 
+            formModified = false; // Reset after saving
             updateActionButtons();
             renderMarkers();
         }
@@ -963,6 +979,7 @@
             selectedLocationIndex = null;
             pendingLocation = null;
             isMovingMarker = false;
+            formModified = false;
             updateActionButtons();
             document.getElementById('loc-id').value = '';
             document.getElementById('loc-type').value = '';
@@ -992,10 +1009,10 @@
                 btn.className = 'btn btn-primary';
             } else if (selectedLocationIndex !== null) {
                 btn.textContent = 'Move';
-                btn.className = 'btn btn-success';
+                btn.className = 'btn btn-secondary';
             } else {
                 btn.textContent = 'Move';
-                btn.className = 'btn btn-secondary';
+                btn.className = 'btn btn-save-disabled';
             }
         }
 
@@ -1003,8 +1020,8 @@
             const saveBtn = document.getElementById('save-loc-btn');
             const deleteBtn = document.getElementById('delete-btn');
 
-            // Save Location: green when there's a pending location OR editing existing
-            if (pendingLocation || selectedLocationIndex !== null) {
+            // Save Location: green when there's a pending location OR form has been modified
+            if (pendingLocation || (selectedLocationIndex !== null && formModified)) {
                 saveBtn.className = 'btn btn-success';
             } else {
                 saveBtn.className = 'btn btn-save-disabled';
@@ -1014,7 +1031,7 @@
             if (selectedLocationIndex !== null) {
                 deleteBtn.className = 'btn btn-danger';
             } else {
-                deleteBtn.className = 'btn btn-secondary';
+                deleteBtn.className = 'btn btn-save-disabled';
             }
 
             // Also update move button
