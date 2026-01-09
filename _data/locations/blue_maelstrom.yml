@@ -82,6 +82,9 @@ categories:
   - id: ancientstingray
     name: Ancient Sting Ray
     icon: /assets/icons/ancientstingray.svg
+  - id: eel
+    name: Eel
+    icon: /assets/icons/eel.svg
 locations:
   - id: bm-shark-001
     type: shark
@@ -109,14 +112,14 @@ locations:
     coordinates:
       x: 629
       y: 651
-    description: On a wood structure at the bottom edge of the whirlpool.
+    description: On a wood structure at the bottom edge of the whirlpool. Chance it will be here or the one slightly to the north west on a similar structure.
     screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-001.jpg
   - id: bm-giant_clam-003
     type: giant_clam
     coordinates:
       x: 442
       y: 743
-    description: ""
+    description: At the very bottom of Rock Island. You can take a tunnel in the water on the south west side.
     screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-003.jpg
   - id: bm-giant_clam-002
     type: giant_clam
@@ -132,3 +135,52 @@ locations:
       y: 190
     description: In the underwater cave past the giant jellyfish.
     screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-004.jpg
+  - id: bm-giant_clam-005
+    type: giant_clam
+    coordinates:
+      x: 859
+      y: 1049
+    description: Just to the left of the Hanging Ship.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-005.jpg
+  - id: bm-mermaid-001
+    type: mermaid
+    coordinates:
+      x: 548
+      y: 745
+    description: Near the dock of Rock Island on the east side.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-mermaid-001.jpg
+  - id: bm-giant_clam-006
+    type: giant_clam
+    coordinates:
+      x: 577
+      y: 674
+    description: On a wood structure at the bottom edge of the whirlpool. Chance it will be here or the one slightly to the south east on a similar structure.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-006.jpg
+  - id: bm-giant_clam-007
+    type: giant_clam
+    coordinates:
+      x: 266
+      y: 633
+    description: Nestled against the wall of the Mist Watch.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-007.jpg
+  - id: bm-jellyfish-001
+    type: jellyfish
+    coordinates:
+      x: 238
+      y: 937
+    description: Found very near to the shark in the waterway between land.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-jellyfish-001.jpg
+  - id: bm-saltvine-001
+    type: saltvine
+    coordinates:
+      x: 173
+      y: 766
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-saltvine-001.jpg
+  - id: bm-saltvine-002
+    type: saltvine
+    coordinates:
+      x: 1070
+      y: 601
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-saltvine-002.jpg
