@@ -5,131 +5,95 @@ Thank you for helping make DarkerMaps better! This guide explains how to submit 
 ## Quick Start
 
 1. Fork this repository
-2. Add your location to the appropriate YAML file in `_data/locations/`
-3. (Optional) Add a screenshot to `assets/screenshots/`
+2. Use the **Location Editor** to add your location and export the YAML
+3. Add a screenshot to `assets/screenshots/{map_id}/`
 4. Submit a pull request
 
 ## Seasons
 
 Location data is organized by game seasons/wipes. When a new season begins, the map data may need to be updated as quest locations can change. The current season is displayed on each map page.
 
-## Location Data Format
+## Using the Location Editor
 
-Locations are stored in YAML files, one per map:
+The Location Editor is the recommended way to add locations. It handles ID generation, coordinates, and screenshot paths automatically.
 
-```
-_data/locations/
-├── blue_maelstrom.yml
-├── goblin_caves.yml
-└── ...
-```
+### Running the Editor
+
+**Option 1: Use the live site**
+- Go to [darkermaps.com/tools/location-editor](https://darkermaps.com/tools/location-editor)
+
+**Option 2: Run locally**
+1. Clone your fork of the repository
+2. Run `bundle exec jekyll serve`
+3. Open `http://localhost:4000/tools/location-editor`
 
 ### Adding a Location
 
-Add your location entry to the appropriate YAML file. Here's the format:
+1. **Select a Type** from the dropdown (e.g., Mermaid, Giant Clam)
+   - This filters the map to show only that type
+2. **Click on the map** to place a marker at the location
+   - The ID and screenshot path are generated automatically
+3. **Add a description** explaining where to find it
+4. Click **Save Location** to add it to the working list
+5. Repeat for additional locations
+6. Click **Save Changes** to export the YAML file
+7. Replace the file in `_data/locations/` with your exported version
 
-```yaml
-locations:
-  - id: "bm-mermaid-001"                 # Unique ID: {prefix}-{type}-{number}
-    type: "mermaid"                      # Must match a category id (see below)
-    coordinates:
-      x: 512                             # X coordinate on the map (pixels)
-      y: 384                             # Y coordinate on the map (pixels)
-    description: "Found near the coral reef on the eastern side."
-    screenshot: "/assets/screenshots/blue_maelstrom/bm-mermaid-001.jpg"  # Optional
-    contributors:
-      - "your_github_username"
-```
+### Editing Existing Locations
 
-### ID Format
+- Click any marker on the map to select it
+- Modify the description or click **Move** then click the map to reposition
+- Click **Save Location** to apply changes
+- Click **Save Changes** to export
 
-Use this naming convention for IDs: `{prefix}-{type}-{number}`
-
-**Map Prefixes:**
-- `bm` = Blue Maelstrom
-- `ru` = Ruins of the Forgotten Castle
-- `cr` = Crypts
-- `if` = Inferno
-- `gc` = Goblin Caves
-- `ic` = Ice Caves
-- `ia` = Ice Abyss
-
-**Examples:**
-- `bm-mermaid-001` - Blue Maelstrom, mermaid location 1
-- `gc-treasure-015` - Goblin Caves, treasure location 15
-- `cr-skeleton-003` - Crypts, skeleton location 3
-
-### Location Types (Categories)
-
-The `type` field must match a category ID defined in the map's YAML file. Each map has its own categories. Check the `categories` section in the relevant `_data/locations/{map}.yml` file.
-
-**Example categories (Blue Maelstrom):**
-- `mermaid` - Mermaid spawn locations
-- `shark` - Shark spawn locations
-- `giant_clam` - Giant Clam locations
-
-### Finding Coordinates
-
-To find the X/Y coordinates for a location, you can use the **Location Editor** tool included in this repository:
-
-1. Open `tools/location-editor.html` in your browser
-2. Load the map image
-3. Click on the map to place locations
-4. Export the YAML when done
-
-Alternatively, open the map image in an image editor and note the pixel coordinates (origin is top-left).
-
-## Adding Screenshots
+## Taking Screenshots
 
 Screenshots help document locations and are encouraged!
 
-### Screenshot Guidelines
+### In-Game Tips
 
-1. **File format**: JPG or PNG
-2. **File name**: Match the location ID (e.g., `bm-001.jpg`)
-3. **Location**: Save to `assets/screenshots/`
-4. **Content**: Show the item/creature location clearly
-5. **Size**: Crop to relevant area, keep under 500KB
+- Press `Shift + \` to hide the HUD
+- Press `X` to holster your weapons
+- For underwater locations, time the screenshot so your hands are NOT visible when wading
+- Keep the location item/creature clearly in frame
+
+### File Requirements
+
+- **Format**: JPG (preferred) or PNG
+- **Name**: Match the location ID (e.g., `bm-mermaid-001.jpg`)
+  - The Location Editor shows the expected filename
+- **Location**: Save to `assets/screenshots/{map_id}/`
+- **Size**: Crop to the relevant area, keep under 500KB
 
 **Note**: Screenshots are proprietary game content used under Fair Use. By submitting a screenshot, you acknowledge this.
 
 ## Pull Request Process
 
 1. **Fork** the repository
-2. **Create a branch** for your changes: `git checkout -b add-location-bm-015`
-3. **Add your changes**:
-   - Edit the YAML file to add your location
-   - (Optional) Add a screenshot
-4. **Commit** with a clear message: `Add quest item location in Blue Maelstrom`
-5. **Push** to your fork
-6. **Open a Pull Request** against the `main` branch
+2. **Create a branch** for your changes: `git checkout -b add-mermaid-locations`
+3. **Use the Location Editor** to add your locations and export the YAML
+4. **Replace** the YAML file in `_data/locations/`
+5. **Add screenshots** to `assets/screenshots/{map_id}/`
+6. **Commit** with a clear message: `Add mermaid locations in Blue Maelstrom`
+7. **Push** to your fork and **open a Pull Request**
 
 ### PR Checklist
 
-- [ ] Location ID is unique and follows naming convention
-- [ ] Coordinates are accurate (tested in-game if possible)
+- [ ] Used the Location Editor to add locations
+- [ ] Coordinates are accurate (verified in-game)
 - [ ] Description is clear and helpful
-- [ ] Your GitHub username is in `contributors`
-- [ ] Screenshot (if included) is appropriately sized
+- [ ] Screenshots follow the naming convention
+- [ ] Screenshots have HUD disabled and weapons holstered
 
 ## For Modular Maps
 
-Modular maps (like Goblin Caves) have an additional `module` field:
+Modular maps (like Goblin Caves, Crypts, etc.) use a tile-based system. When adding locations to modular maps, you'll need to specify which module/tile the location appears on.
 
-```yaml
-- id: "gc-treasure-001"
-  type: "treasure"               # Must match a category id
-  module: "A1"                   # Which tile this appears on
-  coordinates:
-    x: 256                       # Position within the tile
-    y: 128
-  description: "Hidden behind the crates in the corner."
-  contributors:
-    - "your_github_username"
-```
+Module IDs use a grid system: columns are letters (A-E), rows are numbers (1-5).
+- `A1` is top-left
+- `E5` is bottom-right
 
-Module IDs use a 5x5 grid system: columns are letters (A-E), rows are numbers (1-5).
-Example: `A1` is top-left, `E5` is bottom-right.
+The Location Editor will handle this when modular map support is enabled.
 
 ## Code of Conduct
 
