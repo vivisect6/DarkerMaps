@@ -95,7 +95,8 @@
         try {
             const response = await fetch('/assets/data/location_contributors.json');
             if (response.ok) {
-                locationContributors = await response.json();
+                const data = await response.json();
+                locationContributors = data || {}; // Handle null/undefined JSON
             }
         } catch (error) {
             // Silently fail - contributors are optional
