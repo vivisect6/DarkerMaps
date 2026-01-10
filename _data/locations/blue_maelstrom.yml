@@ -184,3 +184,108 @@ locations:
       y: 601
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-saltvine-002.jpg
+  - id: bm-squid-001
+    type: squid
+    coordinates:
+      x: 445
+      y: 156
+    description: Down inside, might even be further in the tunnel. Hanging around the cuttlefish.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-squid-001.jpg
+  - id: bm-squid-002
+    type: squid
+    coordinates:
+      x: 424
+      y: 871
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-squid-002.jpg
+  - id: bm-squid-003
+    type: squid
+    coordinates:
+      x: 464
+      y: 322
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-squid-003.jpg
+  - id: bm-cuttlefish-001
+    type: cuttlefish
+    coordinates:
+      x: 450
+      y: 150
+    description: Down inside, might even be further in the tunnel. Hanging around the squid.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-cuttlefish-001.jpg
+  - id: bm-bladehand-001
+    type: bladehand
+    coordinates:
+      x: 158
+      y: 1041
+    description: He is up in the tower, but will jump down when you approach.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-bladehand-001.jpg
+  - id: bm-mermaid-002
+    type: mermaid
+    coordinates:
+      x: 898
+      y: 451
+    description: Guarding the chest.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-mermaid-002.jpg
+  - id: bm-seawalker-001
+    type: seawalker
+    coordinates:
+      x: 912
+      y: 228
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seawalker-001.jpg
+  - id: bm-seawalker-002
+    type: seawalker
+    coordinates:
+      x: 984
+      y: 271
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seawalker-002.jpg
+  - id: bm-seawalker-003
+    type: seawalker
+    coordinates:
+      x: 956
+      y: 200
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seawalker-003.jpg
+  - id: bm-squid-004
+    type: squid
+    coordinates:
+      x: 655
+      y: 114
+    description: Hanging around the backside of the ship.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-squid-004.jpg
+  - id: bm-crocodilian-001
+    type: crocodilian
+    coordinates:
+      x: 593
+      y: 216
+    description: In the middle section of the ship.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-crocodilian-001.jpg
+  - id: bm-crocodilian-002
+    type: crocodilian
+    coordinates:
+      x: 1068
+      y: 151
+    description: Inside the structure on the first floor. Patrolling the steps.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-crocodilian-002.jpg
+  - id: bm-jellyfish-002
+    type: jellyfish
+    coordinates:
+      x: 428
+      y: 324
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-jellyfish-002.jpg
+  - id: bm-jellyfish-003
+    type: jellyfish
+    coordinates:
+      x: 1054
+      y: 563
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-jellyfish-003.jpg
+  - id: bm-old_rope-001
+    type: old_rope
+    coordinates:
+      x: 617
+      y: 108
+    description: Random chance. On the back of the boat atop some boxes.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-old_rope-001.jpg
