@@ -514,6 +514,7 @@
         let activeFilters = {}; // Track which categories are visible
         let isMovingMarker = false; // Track if we're in move mode
         let formModified = false; // Track if the form has been modified since selection
+        let previousLocType = ''; // Track previous type for reverting on cancel
 
         function updateSaveButton() {
             const btn = document.getElementById('save-changes-btn');
@@ -850,6 +851,24 @@
         function updateGeneratedFields() {
             const type = document.getElementById('loc-type').value;
 
+            // Check if there's unsaved work that would be lost
+            const hasUnsavedWork = pendingLocation || (selectedLocationIndex !== null && formModified);
+
+            if (hasUnsavedWork && type !== previousLocType) {
+                const confirmDiscard = confirm(
+                    'You have unsaved changes that will be lost. Discard changes?'
+                );
+
+                if (!confirmDiscard) {
+                    // Revert the dropdown to previous value
+                    document.getElementById('loc-type').value = previousLocType;
+                    return;
+                }
+            }
+
+            // Update previous type tracker
+            previousLocType = type;
+
             // Always update filter to show only the selected type
             setFilterForType(type);
 
@@ -923,6 +942,7 @@
 
             document.getElementById('loc-id').value = loc.id || '';
             document.getElementById('loc-type').value = loc.type || categories[0]?.id || 'quest_item';
+            previousLocType = document.getElementById('loc-type').value;
             document.getElementById('loc-x').value = loc.coordinates?.x || 0;
             document.getElementById('loc-y').value = loc.coordinates?.y || 0;
             document.getElementById('loc-description').value = loc.description || '';
@@ -959,6 +979,7 @@
             }
 
             formModified = false; // Reset after saving
+            previousLocType = loc.type; // Keep tracker in sync
             updateActionButtons();
             renderMarkers();
         }
@@ -980,6 +1001,7 @@
             pendingLocation = null;
             isMovingMarker = false;
             formModified = false;
+            previousLocType = '';
             updateActionButtons();
             document.getElementById('loc-id').value = '';
             document.getElementById('loc-type').value = '';
@@ -1168,6 +1190,7 @@
             pendingLocation = null;
             selectedLocationIndex = null;
             isMovingMarker = false;
+            previousLocType = '';
             activeFilters = {}; // Reset filters for new map
             clearForm();
 
