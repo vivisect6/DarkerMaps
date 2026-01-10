@@ -85,6 +85,18 @@ categories:
   - id: eel
     name: Eel
     icon: /assets/icons/eel.svg
+  - id: barnacle
+    name: Barnacle
+    icon: /assets/icons/barnacle.svg
+  - id: hermitcrab
+    name: Hermit Crab
+    icon: /assets/icons/hermitcrab.svg
+  - id: crab
+    name: Crab
+    icon: /assets/icons/crab.svg
+  - id: heavychain
+    name: Heavy Chain
+    icon: /assets/icons/heavychain.svg
 locations:
   - id: bm-shark-001
     type: shark
@@ -278,8 +290,8 @@ locations:
   - id: bm-jellyfish-003
     type: jellyfish
     coordinates:
-      x: 1054
-      y: 563
+      x: 1047
+      y: 571
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-jellyfish-003.jpg
   - id: bm-old_rope-001
@@ -289,3 +301,31 @@ locations:
       y: 108
     description: Random chance. On the back of the boat atop some boxes.
     screenshot: /assets/screenshots/blue_maelstrom/bm-old_rope-001.jpg
+  - id: bm-oldnautchartfrag-001
+    type: oldnautchartfrag
+    coordinates:
+      x: 615
+      y: 125
+    description: Random chance.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-oldnautchartfrag-001.jpg
+  - id: bm-sturdy_rope-001
+    type: sturdy_rope
+    coordinates:
+      x: 615
+      y: 108
+    description: Random chance.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-sturdy_rope-001.jpg
+  - id: bm-saltvine-003
+    type: saltvine
+    coordinates:
+      x: 706
+      y: 573
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-saltvine-003.jpg
+  - id: bm-saltvine-004
+    type: saltvine
+    coordinates:
+      x: 573
+      y: 479
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-saltvine-004.jpg

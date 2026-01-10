@@ -100,9 +100,9 @@
   author_url: https://delapouite.com/  
   
 - id: shackles
-  name: Handcuffs
+  name: Manacles
   file: shackles.svg
-  url: https://game-icons.net/1x1/lorc/handcuffs.html
+  url: https://game-icons.net/1x1/lorc/manacles.html
   author: Lorc
   author_url: https://lorcblog.blogspot.com/  
   
@@ -163,7 +163,7 @@
   author_url: https://delapouite.com/  
   
 - id: giantjellyfish
-  name: Giant Jellyfish
+  name: Jellyfish
   file: giantjellyfish.svg
   url: https://game-icons.net/1x1/lorc/jellyfish.html
   author: Lorc
@@ -182,3 +182,31 @@
   url: https://game-icons.net/1x1/delapouite/manta-ray.html
   author: Delapouite
   author_url: https://delapouite.com/    
+  
+- id: barnacle
+  name: Sewed Shell
+  file: barnacle.svg
+  url: https://game-icons.net/1x1/lorc/sewed-shell.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/  
+  
+- id: hermitcrab
+  name: Nautilus shell
+  file: hermitcrab.svg
+  url: https://game-icons.net/1x1/faithtoken/nautilus-shell.html
+  author: Faithtoken
+  author_url: http://www.faithtoken.com/
+  
+- id: heavychain
+  name: Crossed chains
+  file: heavychain.svg
+  url: https://game-icons.net/1x1/lorc/crossed-chains.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/  
+  
+- id: crab
+  name: Sad Crab
+  file: crab.svg
+  url: https://game-icons.net/1x1/lorc/sad-crab.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/ 
