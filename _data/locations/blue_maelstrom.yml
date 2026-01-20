@@ -97,6 +97,9 @@ categories:
   - id: heavychain
     name: Heavy Chain
     icon: /assets/icons/heavychain.svg
+  - id: anchor
+    name: Anchor
+    icon: /assets/icons/anchor.svg
 locations:
   - id: bm-shark-001
     type: shark
@@ -329,3 +332,129 @@ locations:
       y: 479
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-saltvine-004.jpg
+  - id: bm-cuttlefish-002
+    type: cuttlefish
+    coordinates:
+      x: 999
+      y: 441
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-cuttlefish-002.jpg
+  - id: bm-seaurchin-001
+    type: seaurchin
+    coordinates:
+      x: 1004
+      y: 445
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-001.jpg
+  - id: bm-seaurchin-002
+    type: seaurchin
+    coordinates:
+      x: 1039
+      y: 511
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-002.jpg
+  - id: bm-eel-001
+    type: eel
+    coordinates:
+      x: 1091
+      y: 457
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-eel-001.jpg
+  - id: bm-eel-002
+    type: eel
+    coordinates:
+      x: 1003
+      y: 457
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-eel-002.jpg
+  - id: bm-old_rope-002
+    type: old_rope
+    coordinates:
+      x: 879
+      y: 913
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-old_rope-002.jpg
+  - id: bm-crocodilian-003
+    type: crocodilian
+    coordinates:
+      x: 896
+      y: 908
+    description: Patrolling up top.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-crocodilian-003.jpg
+  - id: bm-eel-003
+    type: eel
+    coordinates:
+      x: 318
+      y: 749
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-eel-003.jpg
+  - id: bm-cuttlefish-003
+    type: cuttlefish
+    coordinates:
+      x: 310
+      y: 740
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-cuttlefish-003.jpg
+  - id: bm-seaurchin-003
+    type: seaurchin
+    coordinates:
+      x: 295
+      y: 748
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-003.jpg
+  - id: bm-seaurchin-004
+    type: seaurchin
+    coordinates:
+      x: 320
+      y: 723
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-004.jpg
+  - id: bm-seaurchin-005
+    type: seaurchin
+    coordinates:
+      x: 317
+      y: 757
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-005.jpg
+  - id: bm-hermitcrab-001
+    type: hermitcrab
+    coordinates:
+      x: 412
+      y: 758
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-hermitcrab-001.jpg
+  - id: bm-hermitcrab-002
+    type: hermitcrab
+    coordinates:
+      x: 420
+      y: 727
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-hermitcrab-002.jpg
+  - id: bm-old_rope-003
+    type: old_rope
+    coordinates:
+      x: 495
+      y: 767
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-old_rope-003.jpg
+  - id: bm-old_rope-004
+    type: old_rope
+    coordinates:
+      x: 458
+      y: 710
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-old_rope-004.jpg
+  - id: bm-cuttlefish-004
+    type: cuttlefish
+    coordinates:
+      x: 649
+      y: 731
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-cuttlefish-004.jpg
+  - id: bm-anchor-001
+    type: anchor
+    coordinates:
+      x: 452
+      y: 751
+    description: All the way up top.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-anchor-001.jpg
