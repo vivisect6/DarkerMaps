@@ -217,3 +217,17 @@
   url: https://game-icons.net/1x1/lorc/anchor.html
   author: Lorc
   author_url: https://lorcblog.blogspot.com/ 
+  
+- id: babyturtle
+  name: Turtle
+  file: babyturtle.svg
+  url: https://game-icons.net/1x1/lorc/turtle.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/ 
+
+- id: tidestone
+  name: Tidestone
+  file: tidestone.svg
+  url: https://game-icons.net/1x1/faithtoken/ore.html
+  author: Faithtoken
+  author_url: http://www.faithtoken.com/

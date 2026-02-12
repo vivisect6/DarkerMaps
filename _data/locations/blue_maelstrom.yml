@@ -50,7 +50,7 @@ categories:
     name: Shackles
     icon: /assets/icons/shackles.svg
   - id: tornsail
-    name: Tornsail
+    name: Torn Sail
     icon: /assets/icons/tornsail.svg
   - id: mermaidcoffin
     name: Mermaid Coffin
@@ -100,6 +100,12 @@ categories:
   - id: anchor
     name: Anchor
     icon: /assets/icons/anchor.svg
+  - id: babyturtle
+    name: Baby Turtle
+    icon: /assets/icons/babyturtle.svg
+  - id: tidestone
+    name: Tidestone
+    icon: /assets/icons/tidestone.svg
 locations:
   - id: bm-shark-001
     type: shark
