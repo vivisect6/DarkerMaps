@@ -166,7 +166,7 @@
             color: var(--text-primary);
             font-size: 0.75rem;
             font-family: monospace;
-            cursor: help;
+            cursor: pointer;
         }
 
         .form-hint {
@@ -459,10 +459,10 @@
                 <input type="hidden" id="loc-y">
 
                 <div class="form-group">
-                    <label>Screenshot Path <span id="screenshot-status" class="screenshot-status"></span></label>
+                    <label>Screenshot <span id="screenshot-status" class="screenshot-status"></span></label>
                     <input type="hidden" id="loc-screenshot">
                     <span id="loc-screenshot-display" class="screenshot-display" title=""></span>
-                    <div class="form-hint">Hover to see full path</div>
+                    <div class="form-hint">Click to copy filename · Hover to see full path</div>
                 </div>
 
                 <div class="form-group">
@@ -540,6 +540,12 @@
             initMap();
             renderCategories();
             setupFormChangeTracking();
+
+            document.getElementById('loc-screenshot-display').addEventListener('click', () => {
+                const filename = document.getElementById('loc-screenshot-display').textContent;
+                if (!filename) return;
+                navigator.clipboard.writeText(filename);
+            });
         });
 
         // Track form changes to enable/disable Save Location button

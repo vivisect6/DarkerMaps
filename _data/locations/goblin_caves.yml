@@ -9,7 +9,7 @@ map_info:
     cols: 5
     rows: 5
   # grid_tiles: []  # Define combined tiles here when needed
-  season: "Season 1"
+  season: "EA Season #8"
 
 categories:
   # Placeholder - add specific categories for this map

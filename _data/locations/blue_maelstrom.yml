@@ -5,7 +5,7 @@ map_info:
   dimensions:
     width: 1200
     height: 1201
-  season: Season 1
+  season: "EA Season #8"
 categories:
   - id: mermaid
     name: Mermaid
