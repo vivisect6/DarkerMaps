@@ -1003,9 +1003,16 @@
             if (selectedLocationIndex === null) return;
 
             if (confirm('Delete this location?')) {
+                const preservedType = document.getElementById('loc-type').value;
                 locations.splice(selectedLocationIndex, 1);
                 selectedLocationIndex = null;
                 clearForm();
+                if (preservedType) {
+                    document.getElementById('loc-type').value = preservedType;
+                    previousLocType = preservedType;
+                    setFilterForType(preservedType);
+                    updateGeneratedFields();
+                }
                 renderMarkers();
                 updateSaveButton();
             }
