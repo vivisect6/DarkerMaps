@@ -527,3 +527,59 @@ locations:
       y: 175
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-007.jpg
+  - id: bm-crab-001
+    type: crab
+    coordinates:
+      x: 490
+      y: 147
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-crab-001.jpg
+  - id: bm-crab-002
+    type: crab
+    coordinates:
+      x: 473
+      y: 109
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-crab-002.jpg
+  - id: bm-crab-003
+    type: crab
+    coordinates:
+      x: 415
+      y: 151
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-crab-003.jpg
+  - id: bm-crab-004
+    type: crab
+    coordinates:
+      x: 421
+      y: 174
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-crab-004.jpg
+  - id: bm-crab-005
+    type: crab
+    coordinates:
+      x: 656
+      y: 163
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-crab-005.jpg
+  - id: bm-tidestone-001
+    type: tidestone
+    coordinates:
+      x: 636
+      y: 629
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-tidestone-001.jpg
+  - id: bm-eel-004
+    type: eel
+    coordinates:
+      x: 636
+      y: 633
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-eel-004.jpg
+  - id: bm-crab-006
+    type: crab
+    coordinates:
+      x: 439
+      y: 744
+    description: Inside from the water entrance at the bottom.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-crab-006.jpg

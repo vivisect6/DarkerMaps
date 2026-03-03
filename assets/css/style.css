@@ -366,8 +366,8 @@ body {
 .leaflet-popup-content {
     margin: 0;
     padding: 0;
-    min-width: 250px;
-    max-width: 350px;
+    min-width: 375px;
+    max-width: 525px;
 }
 
 .leaflet-popup-tip {
