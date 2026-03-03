@@ -14,6 +14,8 @@ highlighter: rouge
 exclude:
   - Gemfile
   - Gemfile.lock
+  - LICENSE
+  - LICENSE-DATA
   - node_modules/
   - vendor/
   - README.md
