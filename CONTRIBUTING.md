@@ -20,7 +20,7 @@ The Location Editor is the recommended way to add locations. It handles ID gener
 ### Running the Editor
 
 **Option 1: Use the live site**
-- Go to [darkermaps.com/tools/location-editor](https://darkermaps.com/tools/location-editor)
+- Go to [Darker Maps Location Editor](https://vivisect6.github.io/DarkerMaps/tools/location-editor.html)
 
 **Option 2: Run locally**
 1. Clone your fork of the repository
