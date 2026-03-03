@@ -147,7 +147,7 @@ locations:
     coordinates:
       x: 979
       y: 190
-    description: In the underwater cave past the giant jellyfish.
+    description: Enter through the passage that starts at the ship north. In the underwater cave past the giant jellyfish.
     screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-004.jpg
   - id: bm-giant_clam-005
     type: giant_clam
