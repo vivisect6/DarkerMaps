@@ -601,7 +601,7 @@
             // Fallback to defaults
             originalMapInfo = {};
             categories = [
-                { id: 'placeholder', name: 'Placeholder', icon: '/assets/icons/placeholder.svg' }
+                { id: 'placeholder', name: 'Placeholder', icon: '../assets/icons/placeholder.svg' }
             ];
             renderCategories();
         }
@@ -1079,7 +1079,7 @@
 
                 const category = categories.find(c => c.id === loc.type) || categories[0];
                 const iconHtml = `<div class="editor-marker">
-                    <img src="${category.icon}" alt="${category.name}" class="marker-icon">
+                    <img src="${'.' + category.icon}" alt="${category.name}" class="marker-icon">
                 </div>`;
 
                 const icon = L.divIcon({
@@ -1106,7 +1106,7 @@
             if (pendingLocation && pendingLocation.coordinates) {
                 const category = categories.find(c => c.id === pendingLocation.type) || categories[0];
                 const iconHtml = `<div class="editor-marker pending">
-                    <img src="${category.icon}" alt="${category.name}" class="marker-icon">
+                    <img src="${'.' + category.icon}" alt="${category.name}" class="marker-icon">
                 </div>`;
 
                 const icon = L.divIcon({
