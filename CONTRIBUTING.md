@@ -62,7 +62,8 @@ Screenshots help document locations and are encouraged!
 - **Name**: Match the location ID (e.g., `bm-mermaid-001.jpg`)
   - The Location Editor shows the expected filename
 - **Location**: Save to `assets/screenshots/{map_id}/`
-- **Size**: Crop to the relevant area, keep under 500KB
+- **Size**: Keep under 800KB
+- **Tip**: Use Steam's F12 screenshot button for easy capture
 
 **Note**: Screenshots are proprietary game content used under Fair Use. By submitting a screenshot, you acknowledge this.
 
