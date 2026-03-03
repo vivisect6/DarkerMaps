@@ -463,6 +463,7 @@
                     <input type="hidden" id="loc-screenshot">
                     <span id="loc-screenshot-display" class="screenshot-display" title=""></span>
                     <div class="form-hint">Click to copy filename · Hover to see full path</div>
+                    <img id="loc-screenshot-preview" class="screenshot-preview" src="" alt="" style="display:none;">
                 </div>
 
                 <div class="form-group">
@@ -825,6 +826,14 @@
             document.getElementById('loc-screenshot').value = path;
             document.getElementById('loc-screenshot-display').textContent = getFilenameFromPath(path);
             document.getElementById('loc-screenshot-display').title = path;
+            const preview = document.getElementById('loc-screenshot-preview');
+            if (path) {
+                preview.src = '..' + path;
+                preview.style.display = 'block';
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
             checkScreenshotExists(path);
         }
 
@@ -1079,7 +1088,7 @@
 
                 const category = categories.find(c => c.id === loc.type) || categories[0];
                 const iconHtml = `<div class="editor-marker">
-                    <img src="${'.' + category.icon}" alt="${category.name}" class="marker-icon">
+                    <img src="${'..' + category.icon}" alt="${category.name}" class="marker-icon">
                 </div>`;
 
                 const icon = L.divIcon({
@@ -1106,7 +1115,7 @@
             if (pendingLocation && pendingLocation.coordinates) {
                 const category = categories.find(c => c.id === pendingLocation.type) || categories[0];
                 const iconHtml = `<div class="editor-marker pending">
-                    <img src="${'.' + category.icon}" alt="${category.name}" class="marker-icon">
+                    <img src="${'..' + category.icon}" alt="${category.name}" class="marker-icon">
                 </div>`;
 
                 const icon = L.divIcon({
