@@ -128,13 +128,6 @@ locations:
       y: 602
     description: Chance to be a shark or giant jellyfish. Swimming at the top of the whirlpool.
     screenshot: /assets/screenshots/blue_maelstrom/bm-shark-003.jpg
-  - id: bm-giant_clam-001
-    type: giant_clam
-    coordinates:
-      x: 629
-      y: 651
-    description: On a wood structure at the bottom edge of the whirlpool. Chance it will be here or the one slightly to the north west on a similar structure.
-    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-001.jpg
   - id: bm-giant_clam-003
     type: giant_clam
     coordinates:
@@ -170,13 +163,6 @@ locations:
       y: 745
     description: Near the dock of Rock Island on the east side.
     screenshot: /assets/screenshots/blue_maelstrom/bm-mermaid-001.jpg
-  - id: bm-giant_clam-006
-    type: giant_clam
-    coordinates:
-      x: 577
-      y: 674
-    description: On a wood structure at the bottom edge of the whirlpool. Chance it will be here or the one slightly to the south east on a similar structure.
-    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-006.jpg
   - id: bm-giant_clam-007
     type: giant_clam
     coordinates:
@@ -583,3 +569,24 @@ locations:
       y: 744
     description: Inside from the water entrance at the bottom.
     screenshot: /assets/screenshots/blue_maelstrom/bm-crab-006.jpg
+  - id: bm-giant_clam-008
+    type: giant_clam
+    coordinates:
+      x: 576
+      y: 671
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-008.jpg
+  - id: bm-eel-005
+    type: eel
+    coordinates:
+      x: 776
+      y: 322
+    description: Guarding the chest and the air vent.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-eel-005.jpg
+  - id: bm-ancientstingray-001
+    type: ancientstingray
+    coordinates:
+      x: 953
+      y: 187
+    description: Enter through the small circle on the map directly west of the icon.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-ancientstingray-001.jpg
