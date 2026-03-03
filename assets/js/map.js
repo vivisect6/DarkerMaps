@@ -308,8 +308,6 @@
             ? `<img src="${location.screenshot}" alt="${category.name}" class="location-screenshot" onclick="window.DarkerMaps.showScreenshot('${location.screenshot}', '${category.name}')" loading="lazy">`
             : '';
 
-        const editUrl = `https://github.com/vivisect6/DarkerMaps/edit/main/_data/locations/`;
-
         const typeIcon = category.icon
             ? `<img src="${category.icon}" alt="${category.name}" class="popup-type-icon">`
             : '';
@@ -321,7 +319,6 @@
                 ${screenshot}
                 <div class="location-meta">
                     ${contributorHtml}
-                    <a href="${editUrl}" target="_blank" class="edit-link">Edit this location via Pull Request</a>
                 </div>
             </div>
         `;

@@ -464,3 +464,66 @@ locations:
       y: 751
     description: All the way up top.
     screenshot: /assets/screenshots/blue_maelstrom/bm-anchor-001.jpg
+  - id: bm-old_rope-005
+    type: old_rope
+    coordinates:
+      x: 125
+      y: 289
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-old_rope-005.jpg
+  - id: bm-oldnautchartfrag-002
+    type: oldnautchartfrag
+    coordinates:
+      x: 121
+      y: 324
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-oldnautchartfrag-002.jpg
+  - id: bm-shackles-001
+    type: shackles
+    coordinates:
+      x: 1091
+      y: 930
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-shackles-001.jpg
+  - id: bm-shackles-002
+    type: shackles
+    coordinates:
+      x: 153
+      y: 296
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-shackles-002.jpg
+  - id: bm-sturdy_rope-002
+    type: sturdy_rope
+    coordinates:
+      x: 314
+      y: 281
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-sturdy_rope-002.jpg
+  - id: bm-anchor-002
+    type: anchor
+    coordinates:
+      x: 138
+      y: 323
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-anchor-002.jpg
+  - id: bm-sailorsjournal-001
+    type: sailorsjournal
+    coordinates:
+      x: 1097
+      y: 932
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-sailorsjournal-001.jpg
+  - id: bm-seaurchin-006
+    type: seaurchin
+    coordinates:
+      x: 594
+      y: 298
+    description: Enter through the side.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-006.jpg
+  - id: bm-seaurchin-007
+    type: seaurchin
+    coordinates:
+      x: 559
+      y: 175
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-007.jpg
