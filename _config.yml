@@ -4,7 +4,7 @@
 title: DarkerMaps
 description: Crowdsourced quest item and creature locations for Dark and Darker
 url: ""
-baseurl: ""
+baseurl: "/DarkerMaps"
 
 # Build settings
 markdown: kramdown

@@ -6,6 +6,8 @@
 (function() {
     'use strict';
 
+    const BASE_URL = window.BASE_URL || '';
+
     // Global state
     let map = null;
     let markersLayer = null;
@@ -51,7 +53,7 @@
      * Load map data including categories and locations
      */
     async function loadMapData(mapId) {
-        const dataPath = `/assets/data/${mapId}.json`;
+        const dataPath = `${BASE_URL}/assets/data/${mapId}.json`;
 
         try {
             const response = await fetch(dataPath);
@@ -67,7 +69,7 @@
             if (categories.length === 0) {
                 console.warn('No categories found in map data, using defaults');
                 categories = [
-                    { id: 'placeholder', name: 'Placeholder', icon: '/assets/icons/placeholder.svg' }
+                    { id: 'placeholder', name: 'Placeholder', icon: `${BASE_URL}/assets/icons/placeholder.svg` }
                 ];
             }
 
@@ -80,7 +82,7 @@
             console.error('Error loading map data:', error);
             // Fallback defaults
             categories = [
-                { id: 'placeholder', name: 'Placeholder', icon: '/assets/icons/placeholder.svg' }
+                { id: 'placeholder', name: 'Placeholder', icon: `${BASE_URL}/assets/icons/placeholder.svg` }
             ];
             categories.forEach(cat => {
                 activeFilters[cat.id] = false;
@@ -93,7 +95,7 @@
      */
     async function loadLocationContributors() {
         try {
-            const response = await fetch('/assets/data/location_contributors.json');
+            const response = await fetch(`${BASE_URL}/assets/data/location_contributors.json`);
             if (response.ok) {
                 const data = await response.json();
                 locationContributors = data || {}; // Handle null/undefined JSON
@@ -267,7 +269,7 @@
 
         // Create custom icon using SVG
         const iconHtml = `<div class="location-marker">
-            <img src="${category.icon}" alt="${category.name}" class="marker-icon">
+            <img src="${BASE_URL + category.icon}" alt="${category.name}" class="marker-icon">
         </div>`;
 
         const icon = L.divIcon({
@@ -282,8 +284,8 @@
 
         // Add popup with generous top padding so it's always visible
         marker.bindPopup(() => createPopupContent(location), {
-            maxWidth: 350,
-            minWidth: 250,
+            maxWidth: 525,
+            minWidth: 375,
             autoPan: true,
             autoPanPaddingTopLeft: L.point(50, 250),
             autoPanPaddingBottomRight: L.point(50, 50)
@@ -304,12 +306,13 @@
             ? `<div class="contributors">Added by: <a href="https://github.com/${contributor}" target="_blank" rel="noopener">${contributor}</a></div>`
             : '';
 
-        const screenshot = location.screenshot
-            ? `<img src="${location.screenshot}" alt="${category.name}" class="location-screenshot" onclick="window.DarkerMaps.showScreenshot('${location.screenshot}', '${category.name}')" loading="lazy">`
+        const screenshotUrl = location.screenshot ? BASE_URL + location.screenshot : '';
+        const screenshot = screenshotUrl
+            ? `<img src="${screenshotUrl}" alt="${category.name}" class="location-screenshot" onclick="window.DarkerMaps.showScreenshot('${screenshotUrl}', '${category.name}')" loading="lazy">`
             : '';
 
         const typeIcon = category.icon
-            ? `<img src="${category.icon}" alt="${category.name}" class="popup-type-icon">`
+            ? `<img src="${BASE_URL + category.icon}" alt="${category.name}" class="popup-type-icon">`
             : '';
 
         return `
@@ -340,7 +343,7 @@
             filterGroup.innerHTML = sortedCategories.map(cat => `
                 <label class="filter-checkbox">
                     <input type="checkbox" id="filter-${cat.id}">
-                    <span class="filter-label"><img src="${cat.icon}" alt="${cat.name}" class="filter-icon">${cat.name}</span>
+                    <span class="filter-label"><img src="${BASE_URL + cat.icon}" alt="${cat.name}" class="filter-icon">${cat.name}</span>
                 </label>
             `).join('');
 

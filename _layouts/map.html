@@ -37,7 +37,7 @@ layout: default
         <div id="map"
              data-map-id="{{ page.map_id }}"
              data-map-type="{{ page.map_type }}"
-             data-map-image="{{ page.map_image }}"
+             data-map-image="{{ page.map_image | relative_url }}"
              data-map-width="{{ page.map_width }}"
              data-map-height="{{ page.map_height }}">
         </div>
