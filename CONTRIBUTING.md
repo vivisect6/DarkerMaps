@@ -1,17 +1,17 @@
 # Contributing to DarkerMaps
 
-Thank you for helping make DarkerMaps better! This guide explains how to submit new quest item and creature locations via pull requests.
+This guide explains how to submit new quest item and creature locations via pull requests.
 
 ## Quick Start
 
 1. Fork this repository
-2. Use the **Location Editor** to add your location and export the YAML
-3. Add a screenshot to `assets/screenshots/{map_id}/`
+2. Use the **Location Editor** to add your locations and export the YAML
+3. Add screenshots to `assets/screenshots/{map_id}/`
 4. Submit a pull request
 
 ## Seasons
 
-Location data is organized by game seasons/wipes. When a new season begins, the map data may need to be updated as quest locations can change. The current season is displayed on each map page.
+When a new season begins, the map data may need to be updated as quest locations can change. The current season is displayed on each map page.
 
 ## Using the Location Editor
 
@@ -54,7 +54,6 @@ Screenshots help document locations and are encouraged!
 
 - Press `Shift + \` to hide the HUD
 - Press `X` to holster your weapons
-- For underwater locations, time the screenshot so your hands are NOT visible when wading
 - Keep the location item/creature clearly in frame
 
 ### File Requirements
@@ -85,21 +84,10 @@ Screenshots help document locations and are encouraged!
 - [ ] Screenshots follow the naming convention
 - [ ] Screenshots have HUD disabled and weapons holstered
 
-## For Modular Maps
-
-Modular maps (like Goblin Caves, Crypts, etc.) use a tile-based system. When adding locations to modular maps, you'll need to specify which module/tile the location appears on.
-
-Module IDs use a grid system: columns are letters (A-E), rows are numbers (1-5).
-- `A1` is top-left
-- `E5` is bottom-right
-
-The Location Editor will handle this when modular map support is enabled.
-
 ## Code of Conduct
 
 - Be respectful and constructive
 - Submit accurate information only
-- Credit others' discoveries appropriately
 - No spam or self-promotion
 
 ## Questions?
