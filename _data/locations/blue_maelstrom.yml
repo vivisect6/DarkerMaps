@@ -147,7 +147,7 @@ locations:
     coordinates:
       x: 979
       y: 190
-    description: Enter through the passage that starts at the ship north. In the underwater cave past the giant jellyfish.
+    description: In the underwater cave past the giant jellyfish.
     screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-004.jpg
   - id: bm-giant_clam-005
     type: giant_clam
@@ -467,8 +467,8 @@ locations:
   - id: bm-shackles-001
     type: shackles
     coordinates:
-      x: 1091
-      y: 930
+      x: 1047
+      y: 911
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-shackles-001.jpg
   - id: bm-shackles-002
@@ -590,3 +590,31 @@ locations:
       y: 187
     description: Enter through the small circle on the map directly west of the icon.
     screenshot: /assets/screenshots/blue_maelstrom/bm-ancientstingray-001.jpg
+  - id: bm-tornsail-001
+    type: tornsail
+    coordinates:
+      x: 454
+      y: 711
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-tornsail-001.jpg
+  - id: bm-old_rope-006
+    type: old_rope
+    coordinates:
+      x: 1008
+      y: 928
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-old_rope-006.jpg
+  - id: bm-anchor-003
+    type: anchor
+    coordinates:
+      x: 1024
+      y: 849
+    description: Go into the building and then near the top there is a door, inside you can drop down onto a platform.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-anchor-003.jpg
+  - id: bm-sturdy_rope-003
+    type: sturdy_rope
+    coordinates:
+      x: 190
+      y: 861
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-sturdy_rope-003.jpg
