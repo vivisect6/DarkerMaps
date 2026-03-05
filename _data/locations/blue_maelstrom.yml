@@ -133,6 +133,9 @@ categories:
   - id: brokenframe
     name: Broken Frame
     icon: /assets/icons/brokenframe.svg
+  - id: birdcage
+    name: Birdcage
+    icon: /assets/icons/birdcage.svg
 locations:
   - id: bm-shark-001
     type: shark
@@ -736,3 +739,45 @@ locations:
       y: 894
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-heavychain-002.jpg
+  - id: bm-wovenrattanbottle-002
+    type: wovenrattanbottle
+    coordinates:
+      x: 185
+      y: 864
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-wovenrattanbottle-002.jpg
+  - id: bm-babyturtle-001
+    type: babyturtle
+    coordinates:
+      x: 331
+      y: 884
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-babyturtle-001.jpg
+  - id: bm-tornsail-002
+    type: tornsail
+    coordinates:
+      x: 265
+      y: 883
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-tornsail-002.jpg
+  - id: bm-squid-005
+    type: squid
+    coordinates:
+      x: 257
+      y: 955
+    description: Near the revive inside the tunnel system.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-squid-005.jpg
+  - id: bm-candlestick-001
+    type: candlestick
+    coordinates:
+      x: 129
+      y: 194
+    description: Second floor
+    screenshot: /assets/screenshots/blue_maelstrom/bm-candlestick-001.jpg
+  - id: bm-shackles-003
+    type: shackles
+    coordinates:
+      x: 118
+      y: 289
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-shackles-003.jpg
