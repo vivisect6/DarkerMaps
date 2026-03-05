@@ -94,9 +94,9 @@ categories:
   - id: crab
     name: Crab
     icon: /assets/icons/crab.svg
-  - id: heavychain
-    name: Heavy Chain
-    icon: /assets/icons/heavychain.svg
+  - id: ironchain
+    name: Iron Chain
+    icon: /assets/icons/ironchain.svg
   - id: anchor
     name: Anchor
     icon: /assets/icons/anchor.svg
@@ -641,13 +641,13 @@ locations:
       y: 861
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-sturdy_rope-003.jpg
-  - id: bm-heavychain-001
-    type: heavychain
+  - id: bm-ironchain-001
+    type: ironchain
     coordinates:
       x: 1043
       y: 956
     description: HR only?
-    screenshot: /assets/screenshots/blue_maelstrom/bm-heavychain-001.jpg
+    screenshot: /assets/screenshots/blue_maelstrom/bm-ironchain-001.jpg
   - id: bm-giantjellyfish-001
     type: giantjellyfish
     coordinates:
@@ -732,13 +732,13 @@ locations:
       y: 919
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-shackles-002.jpg
-  - id: bm-heavychain-002
-    type: heavychain
+  - id: bm-ironchain-002
+    type: ironchain
     coordinates:
       x: 1021
       y: 894
     description: ""
-    screenshot: /assets/screenshots/blue_maelstrom/bm-heavychain-002.jpg
+    screenshot: /assets/screenshots/blue_maelstrom/bm-ironchain-002.jpg
   - id: bm-wovenrattanbottle-002
     type: wovenrattanbottle
     coordinates:
@@ -809,13 +809,13 @@ locations:
       y: 901
     description: Right by the door.
     screenshot: /assets/screenshots/blue_maelstrom/bm-spentcandle-002.jpg
-  - id: bm-heavychain-003
-    type: heavychain
+  - id: bm-ironchain-003
+    type: ironchain
     coordinates:
       x: 1018
       y: 862
     description: At the top inside the door on the south side.
-    screenshot: /assets/screenshots/blue_maelstrom/bm-heavychain-003.jpg
+    screenshot: /assets/screenshots/blue_maelstrom/bm-ironchain-003.jpg
   - id: bm-sturdy_rope-004
     type: sturdy_rope
     coordinates:
