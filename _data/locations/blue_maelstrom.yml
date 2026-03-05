@@ -788,3 +788,45 @@ locations:
       y: 139
     description: At the very top of the building.
     screenshot: /assets/screenshots/blue_maelstrom/bm-birdcage-001.jpg
+  - id: bm-cuttlefish-005
+    type: cuttlefish
+    coordinates:
+      x: 754
+      y: 431
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-cuttlefish-005.jpg
+  - id: bm-tidestone-002
+    type: tidestone
+    coordinates:
+      x: 588
+      y: 729
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-tidestone-002.jpg
+  - id: bm-spentcandle-002
+    type: spentcandle
+    coordinates:
+      x: 1083
+      y: 901
+    description: Right by the door.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-spentcandle-002.jpg
+  - id: bm-heavychain-003
+    type: heavychain
+    coordinates:
+      x: 1018
+      y: 862
+    description: At the top inside the door on the south side.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-heavychain-003.jpg
+  - id: bm-sturdy_rope-004
+    type: sturdy_rope
+    coordinates:
+      x: 211
+      y: 792
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-sturdy_rope-004.jpg
+  - id: bm-giant_clam-009
+    type: giant_clam
+    coordinates:
+      x: 176
+      y: 1013
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-009.jpg
