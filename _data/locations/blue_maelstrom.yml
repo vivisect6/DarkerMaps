@@ -498,13 +498,6 @@ locations:
       y: 911
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-shackles-001.jpg
-  - id: bm-shackles-002
-    type: shackles
-    coordinates:
-      x: 153
-      y: 296
-    description: ""
-    screenshot: /assets/screenshots/blue_maelstrom/bm-shackles-002.jpg
   - id: bm-sturdy_rope-002
     type: sturdy_rope
     coordinates:
@@ -673,3 +666,73 @@ locations:
       y: 590
     description: Either a shark or giant jelly fish here.
     screenshot: /assets/screenshots/blue_maelstrom/bm-giantjellyfish-003.jpg
+  - id: bm-longpipe-001
+    type: longpipe
+    coordinates:
+      x: 332
+      y: 1007
+    description: High up on a shelf
+    screenshot: /assets/screenshots/blue_maelstrom/bm-longpipe-001.jpg
+  - id: bm-brokenframe-001
+    type: brokenframe
+    coordinates:
+      x: 1010
+      y: 925
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-brokenframe-001.jpg
+  - id: bm-sealedletter-001
+    type: sealedletter
+    coordinates:
+      x: 1008
+      y: 931
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-sealedletter-001.jpg
+  - id: bm-leatherboot-001
+    type: leatherboot
+    coordinates:
+      x: 1073
+      y: 719
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-leatherboot-001.jpg
+  - id: bm-telescope-001
+    type: telescope
+    coordinates:
+      x: 1037
+      y: 952
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-telescope-001.jpg
+  - id: bm-wovenrattanbottle-001
+    type: wovenrattanbottle
+    coordinates:
+      x: 1012
+      y: 693
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-wovenrattanbottle-001.jpg
+  - id: bm-brokenbarrel-001
+    type: brokenbarrel
+    coordinates:
+      x: 1023
+      y: 849
+    description: Go into the building and then near the top there is a door, inside you can drop down onto a platform.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-brokenbarrel-001.jpg
+  - id: bm-herbpouch-001
+    type: herbpouch
+    coordinates:
+      x: 1036
+      y: 916
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-herbpouch-001.jpg
+  - id: bm-shackles-002
+    type: shackles
+    coordinates:
+      x: 1060
+      y: 919
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-shackles-002.jpg
+  - id: bm-heavychain-002
+    type: heavychain
+    coordinates:
+      x: 1021
+      y: 894
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-heavychain-002.jpg
