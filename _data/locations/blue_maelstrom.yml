@@ -106,13 +106,13 @@ categories:
   - id: tidestone
     name: Tidestone
     icon: /assets/icons/tidestone.svg
-  - id: Long Pipe
+  - id: longpipe
     name: longpipe
     icon: /assets/icons/longpipe.svg
   - id: herbpouch
     name: Herb Pouch
     icon: /assets/icons/herbpouch.svg
-  - id: Telescope
+  - id: telescope
     name: telescope
     icon: /assets/icons/telescope.svg
   - id: wovenrattanbottle
