@@ -107,13 +107,13 @@ categories:
     name: Tidestone
     icon: /assets/icons/tidestone.svg
   - id: longpipe
-    name: longpipe
+    name: Long Pipe
     icon: /assets/icons/longpipe.svg
   - id: herbpouch
     name: Herb Pouch
     icon: /assets/icons/herbpouch.svg
   - id: telescope
-    name: telescope
+    name: Telescope
     icon: /assets/icons/telescope.svg
   - id: wovenrattanbottle
     name: Woven Rattan Bottle
@@ -128,7 +128,7 @@ categories:
     name: Broken Barrel
     icon: /assets/icons/brokenbarrel.svg
   - id: candlestick
-    name: candlestick
+    name: Candlestick
     icon: /assets/icons/candlestick.svg
 locations:
   - id: bm-shark-001
