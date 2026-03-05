@@ -55,7 +55,7 @@ bundle install
 bundle exec jekyll serve
 
 # View at http://localhost:4000
-# location editoor tool at http://localhost:4000/tools/location-editor.html
+# location editor tool at http://localhost:4000/tools/location-editor.html
 ```
 
 ### Project Structure

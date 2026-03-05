@@ -25,7 +25,7 @@ The Location Editor is the recommended way to add locations. It handles ID gener
 **Option 2: Run locally**
 1. Clone your fork of the repository
 2. Run `bundle exec jekyll serve`
-3. Open `http://localhost:4000/tools/location-editor`
+3. Open `http://localhost:4000/tools/location-editor.html`
 
 ### Adding a Location
 

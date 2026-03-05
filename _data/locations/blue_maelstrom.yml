@@ -618,3 +618,10 @@ locations:
       y: 861
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-sturdy_rope-003.jpg
+  - id: bm-heavychain-001
+    type: heavychain
+    coordinates:
+      x: 1043
+      y: 956
+    description: HR only?
+    screenshot: /assets/screenshots/blue_maelstrom/bm-heavychain-001.jpg
