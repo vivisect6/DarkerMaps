@@ -231,3 +231,59 @@
   url: https://game-icons.net/1x1/faithtoken/ore.html
   author: Faithtoken
   author_url: http://www.faithtoken.com/
+  
+- id: longpipe
+  name: Smoking Pipe
+  file: longpipe.svg
+  url: https://game-icons.net/1x1/delapouite/smoking-pipe.html
+  author: Delapouite
+  author_url: https://delapouite.com/
+  
+- id: herbpouch
+  name: Herbs bundle
+  file: herbpouch.svg
+  url: https://game-icons.net/1x1/delapouite/herbs-bundle.html
+  author: Delapouite
+  author_url: https://delapouite.com/    
+
+- id: telescope
+  name: Spyglass
+  file: telescope.svg
+  url: https://game-icons.net/1x1/lorc/spyglass.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/ 
+  
+- id: wovenrattanbottle
+  name: Covered Jar
+  file: wovenrattanbottle.svg
+  url: https://game-icons.net/1x1/delapouite/covered-jar.html
+  author: Delapouite
+  author_url: https://delapouite.com/
+  
+- id: leatherboot
+  name: Leather Boot
+  file: leatherboot.svg
+  url: https://game-icons.net/1x1/lorc/leather-boot.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/ 
+  
+- id: sealedletter
+  name: Envelope
+  file: sealedletter.svg
+  url: https://game-icons.net/1x1/lorc/envelope.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/ 
+  
+- id: brokenbarrel
+  name: Barrel
+  file: brokenbarrel.svg
+  url: https://game-icons.net/1x1/delapouite/barrel.html
+  author: Delapouite
+  author_url: https://delapouite.com/
+  
+- id: candlestick
+  name: Candle Flame
+  file: candlestick.svg
+  url: https://game-icons.net/1x1/lorc/candle-flame.html
+  author: Lorc
+  author_url: https://lorcblog.blogspot.com/ 

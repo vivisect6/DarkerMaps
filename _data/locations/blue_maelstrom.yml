@@ -106,6 +106,30 @@ categories:
   - id: tidestone
     name: Tidestone
     icon: /assets/icons/tidestone.svg
+  - id: Long Pipe
+    name: longpipe
+    icon: /assets/icons/longpipe.svg
+  - id: herbpouch
+    name: Herb Pouch
+    icon: /assets/icons/herbpouch.svg
+  - id: Telescope
+    name: telescope
+    icon: /assets/icons/telescope.svg
+  - id: wovenrattanbottle
+    name: Woven Rattan Bottle
+    icon: /assets/icons/wovenrattanbottle.svg
+  - id: leatherboot
+    name: Leather Boot
+    icon: /assets/icons/leatherboot.svg
+  - id: sealedletter
+    name: Sealed Letter
+    icon: /assets/icons/sealedletter.svg
+  - id: brokenbarrel
+    name: Broken Barrel
+    icon: /assets/icons/brokenbarrel.svg
+  - id: candlestick
+    name: candlestick
+    icon: /assets/icons/candlestick.svg
 locations:
   - id: bm-shark-001
     type: shark
@@ -625,3 +649,24 @@ locations:
       y: 956
     description: HR only?
     screenshot: /assets/screenshots/blue_maelstrom/bm-heavychain-001.jpg
+  - id: bm-giantjellyfish-001
+    type: giantjellyfish
+    coordinates:
+      x: 196
+      y: 1034
+    description: Access from the tunnels that are south west or north east of the crescent portion of the island.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giantjellyfish-001.jpg
+  - id: bm-giantjellyfish-002
+    type: giantjellyfish
+    coordinates:
+      x: 985
+      y: 191
+    description: Access through the passage that leads from the ship north west of the icon.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giantjellyfish-002.jpg
+  - id: bm-giantjellyfish-003
+    type: giantjellyfish
+    coordinates:
+      x: 602
+      y: 590
+    description: Either a shark or giant jelly fish here.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giantjellyfish-003.jpg
