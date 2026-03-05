@@ -127,9 +127,9 @@ categories:
   - id: brokenbarrel
     name: Broken Barrel
     icon: /assets/icons/brokenbarrel.svg
-  - id: candlestick
-    name: Candlestick
-    icon: /assets/icons/candlestick.svg
+  - id: spentcandle
+    name: Spent Candle
+    icon: /assets/icons/spentcandle.svg
   - id: brokenframe
     name: Broken Frame
     icon: /assets/icons/brokenframe.svg
@@ -767,13 +767,13 @@ locations:
       y: 955
     description: Near the revive inside the tunnel system.
     screenshot: /assets/screenshots/blue_maelstrom/bm-squid-005.jpg
-  - id: bm-candlestick-001
-    type: candlestick
+  - id: bm-spentcandle-001
+    type: spentcandle
     coordinates:
       x: 129
       y: 194
     description: Second floor
-    screenshot: /assets/screenshots/blue_maelstrom/bm-candlestick-001.jpg
+    screenshot: /assets/screenshots/blue_maelstrom/bm-spentcandle-001.jpg
   - id: bm-shackles-003
     type: shackles
     coordinates:
@@ -781,3 +781,10 @@ locations:
       y: 289
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-shackles-003.jpg
+  - id: bm-birdcage-001
+    type: birdcage
+    coordinates:
+      x: 104
+      y: 139
+    description: At the very top of the building.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-birdcage-001.jpg

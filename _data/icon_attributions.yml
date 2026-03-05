@@ -281,9 +281,9 @@
   author: Delapouite
   author_url: https://delapouite.com/
   
-- id: candlestick
+- id: spentcandle
   name: Candle Flame
-  file: candlestick.svg
+  file: spentcandle.svg
   url: https://game-icons.net/1x1/lorc/candle-flame.html
   author: Lorc
   author_url: https://lorcblog.blogspot.com/ 
