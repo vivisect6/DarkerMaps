@@ -130,6 +130,9 @@ categories:
   - id: candlestick
     name: Candlestick
     icon: /assets/icons/candlestick.svg
+  - id: brokenframe
+    name: Broken Frame
+    icon: /assets/icons/brokenframe.svg
 locations:
   - id: bm-shark-001
     type: shark
