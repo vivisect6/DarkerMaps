@@ -830,3 +830,17 @@ locations:
       y: 1013
     description: ""
     screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-009.jpg
+  - id: bm-pincushion-001
+    type: pincushion
+    coordinates:
+      x: 1044
+      y: 950
+    description: Possibly Normals and HR only?
+    screenshot: /assets/screenshots/blue_maelstrom/bm-pincushion-001.jpg
+  - id: bm-pincushion-002
+    type: pincushion
+    coordinates:
+      x: 1010
+      y: 931
+    description: Possibly normals and HR only?
+    screenshot: /assets/screenshots/blue_maelstrom/bm-pincushion-002.jpg
