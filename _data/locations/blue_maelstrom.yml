@@ -844,3 +844,66 @@ locations:
       y: 931
     description: Possibly normals and HR only?
     screenshot: /assets/screenshots/blue_maelstrom/bm-pincushion-002.jpg
+  - id: bm-seaurchin-008
+    type: seaurchin
+    coordinates:
+      x: 1043
+      y: 480
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-008.jpg
+  - id: bm-seaurchin-009
+    type: seaurchin
+    coordinates:
+      x: 1076
+      y: 481
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-009.jpg
+  - id: bm-eel-006
+    type: eel
+    coordinates:
+      x: 452
+      y: 912
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-eel-006.jpg
+  - id: bm-eel-007
+    type: eel
+    coordinates:
+      x: 710
+      y: 166
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-eel-007.jpg
+  - id: bm-eel-008
+    type: eel
+    coordinates:
+      x: 746
+      y: 220
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-eel-008.jpg
+  - id: bm-eel-009
+    type: eel
+    coordinates:
+      x: 805
+      y: 174
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-eel-009.jpg
+  - id: bm-giant_clam-010
+    type: giant_clam
+    coordinates:
+      x: 773
+      y: 168
+    description: Deep down within the structure at the bottom. You enter through the circle between the ship parts to the west of this icon.
+    screenshot: /assets/screenshots/blue_maelstrom/bm-giant_clam-010.jpg
+  - id: bm-seaurchin-010
+    type: seaurchin
+    coordinates:
+      x: 392
+      y: 310
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-seaurchin-010.jpg
+  - id: bm-cuttlefish-006
+    type: cuttlefish
+    coordinates:
+      x: 313
+      y: 473
+    description: ""
+    screenshot: /assets/screenshots/blue_maelstrom/bm-cuttlefish-006.jpg
